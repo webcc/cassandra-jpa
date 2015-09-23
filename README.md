@@ -1,4 +1,4 @@
-# Imergo Node.js Persistence Layer for Apache Cassandra
+# Imergo Node.js Javascript Persistence API (JPA) for Apache Cassandra
 
 A persistence layer for using Cassandra with Node.js based on the latest DataStax Driver (2.2.1).
  This tries to bring features from the Java World (JPA) and make life with Cassandra easier. 
