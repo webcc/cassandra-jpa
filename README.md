@@ -36,8 +36,7 @@ You can  [contact us directly!](http://www.imergo.com) or create an GitHub issue
 let cp = require('cassandra-persistence');
 ```
 
-### Create your Entity Class Extending (optionally, see baseEntityClass in the configuration) the 
-base CassandraEntity
+### Create your Entity Class Extending (optionally, see baseEntityClass in the configuration) the base CassandraEntity
 
 [See more in the foo example](./examples/Foo.js)
 
