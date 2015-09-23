@@ -25,7 +25,7 @@ $ npm install cassandra-jpa
 
 ## Getting Help
 
-You can  [contact us directly!](http://www.imergo.com) or create an GiHub issue.
+You can  [contact us directly!](http://www.imergo.com) or create an GitHub issue.
 
 
 ## Basic usage
