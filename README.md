@@ -105,3 +105,7 @@ class FooEAOFactory extends BaseEAOFactory
 
 ```
 [See more in the foo example](./examples/FooEAOFactory.js)
+
+## Licence
+
+[See](./LICENSE.md)
