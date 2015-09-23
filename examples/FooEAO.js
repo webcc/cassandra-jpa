@@ -1,7 +1,7 @@
 "use strict";
 let CassandraEntity = require("..").CassandraEntity;
 let m = require("../index.js");
-let Foo = require("./FooEntity");
+let Foo = require("./Foo");
 let PersistenceUtils = require("../lib/PersistenceUtils");
 module.exports = class FooEAO extends m.BaseEAO {
     constructor(config)
