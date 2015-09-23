@@ -1,12 +1,11 @@
 # Imergo Node.js Javascript Persistence API (JPA) for Apache Cassandra
 
-A persistence layer for using Cassandra with Node.js based on the latest DataStax Driver (2.2.1).
- This tries to bring features from the Java World (JPA) and make life with Cassandra easier. 
+A persistence layer for using Cassandra with Node.js based on the latest [DataStax Cassandra Driver](https://blog.risingstack.com/node-js-best-practices/ ). This module brings features from the Java World (JPA) and try to make life with Cassandra easier, mostly for people coming from the JAVA World. 
 
 ## Installation
 
 ```bash
-$ npm install cassandra-persistence
+$ npm install cassandra-jpa
 ```
 
 ## Features
