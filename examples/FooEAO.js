@@ -29,7 +29,7 @@ module.exports = class FooEAO extends m.BaseEAO {
     update(entity, criteria, callback)
     {
         let row = this.toRow(entity);
-        return this.updateRow(row, criteria, callback);
+        return this.updateRowByCriteria(row, criteria, callback);
     }
     persistAll(entities, callback)
     {
