@@ -7,17 +7,16 @@ module.exports = class FooEAO extends m.BaseEAO {
     constructor(config)
     {
         super(config);
-        this.table = {
+        this.table = new m.CassandraTable(this.client.options.keyspace, {
             name: "foo",
             fields: new Map([["id", "timeuuid"], ["name", "text"], ["created", "timeuuid"],
                 ["entity", "text"], ["entities", "list<text>"], ["simpleObjects", "list<text>"],
                 ["enabled", "boolean"]]),
             partitionKeys: ["id"],
-            clusteringColumns: new Map(),
-            secondaryIndexes: []
-        };
-        this.table.clusteringColumns.set("name", "ASC");
-        this.table.secondaryIndexes.push("name");
+            clusteringColumns: new Map([["name", "ASC"]]),
+            secondaryIndexes: ["name"],
+            ttl: this.client.options.queryOptions.ttl
+        });
         this.entityClass = Foo;
     }
 
@@ -26,14 +25,17 @@ module.exports = class FooEAO extends m.BaseEAO {
         let row = this.toRow(entity);
         return this.persistRow(row, callback);
     }
+
     update(entity, criteria, callback)
     {
         let row = this.toRow(entity);
         return this.updateRowByCriteria(row, criteria, callback);
     }
+
     persistAll(entities, callback)
     {
-        let rows = entities.map((entity)=>{
+        let rows = entities.map((entity)=>
+        {
             return this.toRow(entity);
         });
         return this.persistAllRows(rows, callback);
@@ -66,7 +68,7 @@ module.exports = class FooEAO extends m.BaseEAO {
         let entity = super.fromRow(row);
         entity.entity = new CassandraEntity(JSON.parse(row.entity));
         entity.entities = [];
-        if(row.entities)
+        if (row.entities)
         {
             row.entities.forEach(function (element, index, array)
             {
