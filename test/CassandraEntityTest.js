@@ -1,6 +1,7 @@
 "use strict";
 let assert = require("assert");
 let BaseEAO = require("../lib/BaseEAO");
+let Foo = require("../examples/Foo");
 let m =  require("..");
 describe("cassandra-persistence", function ()
 {
@@ -13,6 +14,18 @@ describe("cassandra-persistence", function ()
             assert(entity instanceof m.CassandraEntity);
             assert(S.toString() === "Symbol(CassandraEntity)");
             assert(typeof entity.id === "string");
+        });
+        it("should initiate Foo", function ()
+        {
+            let foo = new Foo({
+                name: "test",
+                created: new Date(),
+                entity: new m.CassandraEntity(),
+                entities: [new m.CassandraEntity(), new m.CassandraEntity()]
+            });
+            assert(foo instanceof Foo);
+            assert(typeof foo.id === "string");
+            assert(foo.name === "test");
         });
     });
 });

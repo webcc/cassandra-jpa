@@ -105,12 +105,14 @@ describe("cassandra-persistence", function ()
             {
                 let criteria = new Map();
                 criteria.set("id", TimeUuid.fromString(foo.id));
+                assert(foo.name === "test");
+
                 eao.findOne(criteria, function (error, res)
                 {
                     assert.equal(error, null);
                     assert(res instanceof CassandraEntity);
                     assert(res.id === id);
-                    assert(res.name === "test");
+                    assert.equal(res.name, "test");
                     return callback(error, res);
                 });
             }], function (err, results)
