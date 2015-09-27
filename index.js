@@ -1,9 +1,11 @@
 "use strict";
 module.exports = {
-    CassandraTable: require("./lib/MetaModel"),
-    PersistenceConfiguration: require("./lib/PersistenceConfiguration"),
-    BaseEAO: require("./lib/EntityManager"),
-    BaseEAOFactory: require("./lib/BaseEAOFactory"),
+    MetaModel: require("./lib/MetaModel"),
+    JPAConfiguration: require("./lib/JPAConfiguration"),
+    PersistenceUtils: require("./lib/PersistenceUtils"),
+    Persistence: require("./lib/Persistence"),
+    EntityManager: require("./lib/EntityManager"),
+    Entity: require("./lib/Entity"),
     CassandraClientFactory: require("./lib/CassandraClientFactory"),
-    CassandraEntity: require("./lib/Entity")
+    err: require("./lib/errors")
 };

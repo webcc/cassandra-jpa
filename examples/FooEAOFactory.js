@@ -1,6 +1,8 @@
 "use strict";
 let BaseEAOFactory = require("..").BaseEAOFactory;
 let FooEAO = require('./FooEAO');
+let Foo = require("./Foo");
+
 module.exports = class FooEAOFactory extends BaseEAOFactory
 {
     constructor(config)

@@ -7,9 +7,9 @@ function initConfig()
     let config = {
         cassandra: {
             contactPoints: ["webcc-db"],
-            keyspace: "imergo_tests",
+            keyspace: "imergo_tests"
         }
     };
-    configuration = new jpa.PersistenceConfiguration(config);
+    configuration = new jpa.JPAConfiguration(config);
     return configuration;
 }

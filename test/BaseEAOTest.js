@@ -8,7 +8,7 @@ let Foo = require("./../examples/Foo");
 let FooEAO = require("./../examples/FooEAO");
 let FooEAOFactory = require("./../examples/FooEAOFactory");
 let CassandraEntity = require("../lib/Entity");
-let PersistenceConfiguration = require("../lib/PersistenceConfiguration");
+let JPAConfiguration = require("../lib/JPAConfiguration");
 describe("cassandra-persistence", function ()
 {
     describe("#BaseEAO", function ()
@@ -24,8 +24,8 @@ describe("cassandra-persistence", function ()
         let id = foo.id;
         before(function ()
         {
-            config = new PersistenceConfiguration();
-            assert.equal(config instanceof PersistenceConfiguration, true);
+            config = new JPAConfiguration();
+            assert.equal(config instanceof JPAConfiguration, true);
             eao = new FooEAO(config);
             assert.equal(eao instanceof FooEAO, true);
         });
@@ -33,14 +33,6 @@ describe("cassandra-persistence", function ()
         {
             let baseEAO = new BaseEAO(config);
             assert.equal(baseEAO instanceof BaseEAO, true);
-        });
-        it("should convert entity toRow", function ()
-        {
-            let row = eao.toRow(foo);
-            assert.equal(typeof row.entity === "string", true);
-            assert.equal(row.id instanceof TimeUuid, true);
-            assert.equal(row.entities.length, 2);
-            assert.equal(row.entities[0] instanceof CassandraEntity, false);
         });
         it("should convert row to entity", function ()
         {

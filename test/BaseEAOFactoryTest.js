@@ -2,8 +2,8 @@
 let assert = require("assert");
 let BaseEAO = require("../lib/EntityManager");
 let BaseEAOFactory = require("../lib/BaseEAOFactory");
-let PersistenceConfiguration = require("../lib/PersistenceConfiguration");
-let config = new PersistenceConfiguration();
+let JPAConfiguration = require("../lib/JPAConfiguration");
+let config = new JPAConfiguration();
 describe("cassandra-persistence", function ()
 { 
     describe("#BaseEAOFactory", function ()
