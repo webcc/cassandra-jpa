@@ -1,9 +1,9 @@
 "use strict";
 module.exports = {
-    CassandraTable: require("./lib/CassandraTable"),
+    CassandraTable: require("./lib/MetaModel"),
     PersistenceConfiguration: require("./lib/PersistenceConfiguration"),
-    BaseEAO: require("./lib/BaseEAO"),
+    BaseEAO: require("./lib/EntityManager"),
     BaseEAOFactory: require("./lib/BaseEAOFactory"),
     CassandraClientFactory: require("./lib/CassandraClientFactory"),
-    CassandraEntity: require("./lib/CassandraEntity")
+    CassandraEntity: require("./lib/Entity")
 };

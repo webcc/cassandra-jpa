@@ -1,6 +1,6 @@
 "use strict";
 let assert = require("assert");
-let BaseEAO = require("../lib/BaseEAO");
+let BaseEAO = require("../lib/EntityManager");
 let Foo = require("../examples/Foo");
 let m =  require("..");
 describe("cassandra-persistence", function ()

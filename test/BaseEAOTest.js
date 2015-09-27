@@ -2,12 +2,12 @@
 let assert = require("assert");
 let async = require("async");
 let TimeUuid = require('cassandra-driver').types.TimeUuid;
-let BaseEAO = require("../lib/BaseEAO");
+let BaseEAO = require("../lib/EntityManager");
 let CassandraClientFactory = require("../lib/CassandraClientFactory");
 let Foo = require("./../examples/Foo");
 let FooEAO = require("./../examples/FooEAO");
 let FooEAOFactory = require("./../examples/FooEAOFactory");
-let CassandraEntity = require("../lib/CassandraEntity");
+let CassandraEntity = require("../lib/Entity");
 let PersistenceConfiguration = require("../lib/PersistenceConfiguration");
 describe("cassandra-persistence", function ()
 {

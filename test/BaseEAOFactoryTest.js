@@ -1,6 +1,6 @@
 "use strict";
 let assert = require("assert");
-let BaseEAO = require("../lib/BaseEAO");
+let BaseEAO = require("../lib/EntityManager");
 let BaseEAOFactory = require("../lib/BaseEAOFactory");
 let PersistenceConfiguration = require("../lib/PersistenceConfiguration");
 let config = new PersistenceConfiguration();
