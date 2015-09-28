@@ -71,25 +71,39 @@ configuration.cassandra.keyspace = "tests";
 If you need to override the default toRow, fromRow function of the MetaModel, you need to extend the MetaModel class.
 
 ```javascript
-        this.name = "foo";
-        this.fields = new Map([["id", "timeuuid"], ["name", "text"], ["created", "timeuuid"],
-            ["entity", "text"], ["entities", "list<text>"], ["simpleObjects", "list<text>"],
-            ["enabled", "boolean"]]);
-        this.partitionKeys = ["id"];
-        this.clusteringColumns = new Map([["name", "ASC"]]);
-        this.secondaryIndexes = ["name"];
-        this.entityClass = Foo;
-
+class FooMetaModel extends MetaModel {
+  constructor(keySpace)
+  {
+    super({});
+    this.keySpace = keySpace;
+    this.name = "foo";
+    this.fields = new Map([["id", "timeuuid"], ["name", "text"], ["created", "timeuuid"],
+        ["entity", "text"], ["entities", "list<text>"], ["simpleObjects", "list<text>"],
+        ["enabled", "boolean"]]);
+    this.partitionKeys = ["id"];
+    this.clusteringColumns = new Map([["name", "ASC"]]);
+    this.secondaryIndexes = ["name"];
+    this.entityClass = Foo;
+  }
+  toRow(entity)
+  {
+   return super.toRow(entity);
+  }
+  fromRow(row)
+  {
+   return super.fromRow(row);
+  }
+    }
 ```
 
 Otherwise you can simply make an instance and pass config param.
 
 ```javascript
-        let config = {
-            name: "foo";
-            etc..
-        }
-        let myModel = new MetaModel(config);
+ let config = {
+     name: "foo";
+     etc..
+ }
+ let myModel = new MetaModel(config);
 ```
 
 [See more in the foo example](./examples/FooMetaModel.js)
