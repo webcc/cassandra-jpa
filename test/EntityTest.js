@@ -9,9 +9,7 @@ describe("cassandra-persistence", function ()
         it("should initiate Entity", function ()
         {
             let entity = new m.Entity();
-            let S = Object.getOwnPropertySymbols(entity)[0];
             assert(entity instanceof m.Entity);
-            assert(S.toString() === "Symbol(JPAEntity)");
             assert(typeof entity.id === "string");
         });
         it("should initiate Foo", function ()
