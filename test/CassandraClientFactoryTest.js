@@ -2,12 +2,12 @@
 let assert = require("assert");
 let CassandraClientFactory = require("../lib/CassandraClientFactory");
 let cassandra = require('cassandra-driver');
-let PersistenceConfiguration = require("../lib/PersistenceConfiguration");
+let JPAConfiguration = require("../lib/JPAConfiguration");
 describe("cassandra-persistence", function ()
 {
     describe("#CassandraClientFactory", function ()
     {
-        let config = (new PersistenceConfiguration()).cassandra;
+        let config = (new JPAConfiguration()).cassandra;
         it("should create a client", function (done)
         {
             let client = CassandraClientFactory.getClient(config);

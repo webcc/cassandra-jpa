@@ -1,6 +1,6 @@
 "use strict";
-let CassandraEntity = require("..").CassandraEntity;
-module.exports = class Foo extends CassandraEntity {
+let Entity = require("..").Entity;
+module.exports = class Foo extends Entity {
     constructor(config)
     {
         super(config);
@@ -11,7 +11,7 @@ module.exports = class Foo extends CassandraEntity {
         super.initDefaults();
         this.name = "foo";
         this.created = new Date();
-        this.entity = new CassandraEntity();
+        this.entity = new Entity();
         this.entities = [];
         this.simpleObjects = ["a", "b"];
         this.enabled = true;
