@@ -10,6 +10,7 @@ describe("cassandra-persistence", function ()
     describe("#EntityManager", function ()
     {
         let config = require("./config/config.js");
+        config.cassandra.contactPoints = [ process.env.DBHOST || config.cassandra.contactPoints[0] ];
         let fooMetaModel = new FooMetaModel(config.cassandra.keyspace);
         let entityManager;
         let foo = new Foo({

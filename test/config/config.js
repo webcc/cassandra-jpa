@@ -4,12 +4,8 @@ let configuration = null;
 module.exports = configuration || initConfig();
 function initConfig()
 {
-    let config = {
-        cassandra: {
-            contactPoints: ["webcc-db"],
-            keyspace: "imergo_tests"
-        }
-    };
-    configuration = new jpa.JPAConfiguration(config);
+    configuration = new jpa.JPAConfiguration();
+    configuration.cassandra.contactPoints = ["localhost"];
+    configuration.cassandra.keyspace = "tests";
     return configuration;
 }

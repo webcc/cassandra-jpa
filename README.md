@@ -1,12 +1,26 @@
 # [Imergo](https://imergo.com/solutions/imergo.html) Javascript (Node.js) Persistence API (JPA) for Apache Cassandra
 
-A persistence layer for using Cassandra with Node.js based on the latest [DataStax Cassandra Driver](https://blog.risingstack.com/node-js-best-practices/ ). This module brings features from the Java World (JPA) and try to make life with Cassandra easier, mostly for people coming from the JAVA World. 
+A persistence layer for using Cassandra with Node.js based on the latest [DataStax Cassandra Driver](https://blog.risingstack.com/node-js-best-practices/ ). 
+This module brings features from the Java World (JPA) and try to make life with Cassandra easier, mostly for people coming from the JAVA World.
+The idea is to make the API as similar as possible to the [latest JPA](http://download.oracle.com/otndocs/jcp/persistence-2_1-fr-eval-spec/index.html) so that Java - and not only - developers to start easily with cassandra. Last but not least, this modules provides a good base for any Node.js developer for any kind of project that uses cassandra as its reposistory.
 
 ## Installation
 
 ```bash
 $ npm install cassandra-jpa
 ```
+## Prerequistics
+-  ES6 (Node.js > 4.0.0)
+
+## Design
+
+- Flexible configuration
+ - Datastax Cassandra Driver Configuration
+ - Configurable entity class, (TODO: allow for not having to extend - interface-like style) 
+ - Configurable logger
+- OOP using classes
+- Self explainable Java (JPA) API based/inspired
+- [NODE.js best practices](https://blog.risingstack.com/node-js-best-practices/ "RisingStack Engineering Blog")
 
 ## Features
 
@@ -25,7 +39,7 @@ $ npm install cassandra-jpa
 
 ## Getting Help
 
-You can  [contact us directly!](http://www.imergo.com) or create an GitHub issue.
+You can  [contact WebCC directly!](http://www.imergo.com) or create an GitHub issue.
 
 
 ## Basic usage
@@ -36,75 +50,49 @@ You can  [contact us directly!](http://www.imergo.com) or create an GitHub issue
 let cp = require('cassandra-persistence');
 ```
 
-### Create your Entity Class Extending (optionally, see baseEntityClass in the configuration) the base CassandraEntity
+### Create your Entity Class Extending (optionally, see baseEntityClass in the configuration) the base Entity
+
+Requirements
+
+- toJSON function should return entity property names same with table fields
 
 [See more in the foo example](./examples/Foo.js)
 
 ### Configure your persistence
 
 ```javascript
-let config = new cp.PersistenceConfiguration({
-    cassandra = {
-        contactPoints: ["localhost"],
-        keyspace: "cassandra-persistence-test"
-    }   
-});
+configuration = new jpa.JPAConfiguration();
+configuration.cassandra.contactPoints = ["localhost"];
+configuration.cassandra.keyspace = "tests";
 ```
 
-### Implement your EAO class extending the BaseEAO one
+### Implement your MetaModel class by extending the MetaModel or passing config as parameter
+
+If you need to override the default toRow, fromRow function of the MetaModel, you need to extend the MetaModel class.
 
 ```javascript
-class FooEAO extends BaseEAO {
-    constructor(config)
-    {
-        super(config);
-        this.table = {
-            name: "foo",
-            fields: new Map([["id", "timeuuid"], ["name", "text"], ["created", "timeuuid"],
-                ["entity", "text"], ["entities", "list<text>"], ["simpleObjects", "list<text>"],
-                ["enabled", "boolean"]]),
-            partitionKeys: ["id"],
-            clusteringColumns: new Map(),
-            secondaryIndexes: []
-        };
-        this.table.clusteringColumns.set("name", "ASC");
-        this.table.secondaryIndexes.push("name");
+        this.name = "foo";
+        this.fields = new Map([["id", "timeuuid"], ["name", "text"], ["created", "timeuuid"],
+            ["entity", "text"], ["entities", "list<text>"], ["simpleObjects", "list<text>"],
+            ["enabled", "boolean"]]);
+        this.partitionKeys = ["id"];
+        this.clusteringColumns = new Map([["name", "ASC"]]);
+        this.secondaryIndexes = ["name"];
         this.entityClass = Foo;
-    }
-}
 
 ```
 
-[See more in the foo example](./examples/FooEAO.js)
-
-### Optionally (if many entities), implement an EAOFactory by extending the BaseEAOFactory
+Otherwise you can simply make an instance and pass config param.
 
 ```javascript
-class FooEAOFactory extends BaseEAOFactory
-{
-    constructor(config)
-    {
-        super(config);
-        this.eao.fooEAO = this.getFooEAO();
-    }
- 
-    getAllEAO()
-    {
-        return this.eao;
-    }
-
-    getFooEAO()
-    {
-        if (!this.eao.fooEAO)
-        {
-            this.eao.fooEAO = new FooEAO(this.config);
+        let config = {
+            name: "foo";
+            etc..
         }
-        return this.eao.fooEAO;
-    }
-};
-
+        let myModel = new MetaModel(config);
 ```
-[See more in the foo example](./examples/FooEAOFactory.js)
+
+[See more in the foo example](./examples/FooMetaModel.js)
 
 ## Licence
 
