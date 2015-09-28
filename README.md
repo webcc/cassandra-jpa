@@ -47,7 +47,7 @@ You can  [contact WebCC directly!](http://www.imergo.com) or create an GitHub is
 ### Import the cassandra-persistence module
 
 ```javascript
-let cp = require('cassandra-jpa');
+let jpa = require('cassandra-jpa');
 ```
 
 ### Create your Entity Class Extending (optionally, see baseEntityClass in the configuration) the base Entity
