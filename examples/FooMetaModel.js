@@ -16,7 +16,7 @@ module.exports = class FooMetaModel extends m.MetaModel {
         this.entityClass = Foo;
     }
 
-    toRow(entity, callback)
+    toRow(entity)
     {
         return super.toRow(entity);
     }
