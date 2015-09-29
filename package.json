@@ -27,8 +27,8 @@
         }
     },
     "scripts": {
-        "jpa:test": "mocha -R spec -t 10000 test/*.js",
-        "jpa:cover": "istanbul cover -x *Test.js _mocha -- -R spec test/*.js"
+        "test": "mocha -R spec -t 10000 test/**/*.test.js",
+        "jpa:cover": "istanbul cover -x *.test.js _mocha -- -R spec test/*.js"
     },
     "license": {
         "type": "Apache-2.0",
