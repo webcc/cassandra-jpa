@@ -1,7 +1,12 @@
 {
     "name": "cassandra-jpa",
-    "description": "Imergo Node.js Javascript Persistence API for Apache Cassandra.",
     "version": "0.1.0",
+    "description": "Imergo Node.js Javascript Persistence API for Apache Cassandra.",
+    "main": "index.js",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/webcc/cassandra-jpa.git"
+    },
     "author": {
         "name": "Web Compliance Center",
         "email": "webcc@fit.fraunhofer.de"
@@ -16,16 +21,21 @@
     "devDependencies": {
         "mocha": "*"
     },
-    "main": "index",
-    "license": "SEE LICENSE IN LICENSE.md",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/webcc/cassandra-jpa.git"
+    "config": {
+        "ghooks": {
+            "pre-commit": "npm run jpa:test"
+        }
+    },
+    "scripts": {
+        "jpa:test": "mocha -R spec -t 10000 test/*.js",
+        "jpa:cover": "istanbul cover -x *Test.js _mocha -- -R spec test/*.js"
+    },
+    "license": {
+        "type": "Apache-2.0",
+        "url": "https://github.com/webcc/typly/blob/master/LICENSE.md"
     },
     "engines": {
         "node": ">=4.1.0"
     },
-    "scripts": {
-        "test": "mocha -R spec -t 10000 test/*.js"
-    }
+    "homepage": "https://github.com/webcc/typly"
 }
