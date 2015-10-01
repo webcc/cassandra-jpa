@@ -131,7 +131,6 @@ describe("cassandra-persistence", function ()
             {
                 let criteria = new Map();
                 criteria.set("id", TimeUuid.fromString(newFoo.id));
-                ;
                 criteria.set("name", newFoo.name);
                 entityManager.findOne(fooMetaModel, function (error, res)
                 {
