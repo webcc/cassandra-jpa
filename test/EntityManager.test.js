@@ -20,17 +20,20 @@ describe("cassandra-persistence", function ()
             entities: [new m.Entity(), new m.Entity()]
         });
         let id = foo.id;
+        let cb, cq;
         before(function ()
         {
             let emFactory = m.Persistence.createEntityManagerFactory("Foo", config);
-            entityManager = emFactory.createEntityManager();
+            entityManager = emFactory.createEntityManager(fooMetaModel);
+            cb = entityManager.getCriteriaBuilder();
+            cq = cb.createQuery();
             assert.equal(entityManager instanceof m.EntityManager, true);
+            assert.equal(entityManager.metaModel instanceof FooMetaModel, true);
         });
         it("should convert entity toRow", function ()
         {
             let row = fooMetaModel.toRow(foo);
             assert.equal(typeof row.entity === "string", true);
-            assert.equal(row.id instanceof TimeUuid, true);
             assert.equal(row.entities.length, 2);
             assert.equal(row.entities[0] instanceof Foo, false);
         });
@@ -46,7 +49,7 @@ describe("cassandra-persistence", function ()
         });
         it("should drop Table foo", function (done)
         {
-            entityManager.dropTable(fooMetaModel, function (error, res)
+            entityManager.dropTable(function (error, res)
             {
                 assert.equal(error, null);
                 return done();
@@ -54,15 +57,16 @@ describe("cassandra-persistence", function ()
         });
         it("should create Table foo", function (done)
         {
-            entityManager.createTable(fooMetaModel, function (error, res)
+            entityManager.createTable(function (error, res)
             {
                 assert.equal(error, null);
                 return done();
             });
         });
+
         it("should insert Indexes to Table foo", function (done)
         {
-            entityManager.insertIndexes(fooMetaModel, function (error, res)
+            entityManager.insertIndexes(function (error, res)
             {
                 assert.equal(error, null);
                 return done();
@@ -70,43 +74,47 @@ describe("cassandra-persistence", function ()
         });
         it("should truncate Table foo", function (done)
         {
-            entityManager.truncate(fooMetaModel, function (error, res)
+            entityManager.truncate(function (error, res)
             {
                 assert.equal(error, null);
                 return done();
             });
         });
-        it("should persist Foo", function (done)
+
+         it("should persist Foo", function (done)
         {
-            entityManager.persist(foo, fooMetaModel, function (error, result)
+            entityManager.persist(foo, function (error, result)
             {
                 assert.equal(error, null);
                 return done();
             });
         });
-        it("should findOne Foo by criteria", function (done)
+
+        it("should findOne Foo by criteriaQuery", function (done)
         {
-            let criteria = new Map();
-            criteria.set("id", TimeUuid.fromString(foo.id));
+            let op1 = cb.equal("id", TimeUuid.fromString(foo.id));
+            let q1 = cb.and([op1]);
+            let criteriaQuery = cq.where(cb.and([op1]));
             assert(foo.name === "test");
-            entityManager.findOne(fooMetaModel, function (error, res)
+            entityManager.findOne(function (error, res)
             {
                 assert.equal(error, null);
                 assert(res instanceof Foo);
                 assert(res.id === id);
                 assert.equal(res.name, "test");
                 return done();
-            }, criteria);
+            }, criteriaQuery);
         });
+
         it("should update foo", function (done)
         {
             let newFoo;
             async.series([function (callback)
             {
-                let criteria = new Map();
-                criteria.set("id", TimeUuid.fromString(foo.id));
-                criteria.set("name", foo.name);
-                entityManager.findOne(fooMetaModel, function (error, res)
+                let op1 = cb.equal("id", TimeUuid.fromString(foo.id));
+                let op2 = cb.equal("name", foo.name);
+                let criteriaQuery = cq.where(cb.and([op1, op2]));
+                entityManager.findOne(function (error, res)
                 {
                     assert.equal(error, null);
                     newFoo = res;
@@ -114,46 +122,44 @@ describe("cassandra-persistence", function ()
                     assert(newFoo.id === id);
                     assert(newFoo.enabled === true);
                     return callback(error, res);
-                }, criteria);
+                }, criteriaQuery);
             }, function (callback)
             {
                 newFoo.enabled = false;
-                let criteria = new Map();
-                criteria.set("id", TimeUuid.fromString(newFoo.id));
-                ;
-                criteria.set("name", newFoo.name);
-                entityManager.updateByCriteria(newFoo, fooMetaModel, function (error, res)
+                let op1 = cb.equal("id", TimeUuid.fromString(foo.id));
+                let op2 = cb.equal("name", newFoo.name);
+                let criteriaQuery = cq.where(cb.and([op1, op2]));
+                entityManager.updateByCriteria(newFoo, function (error, res)
                 {
                     assert.equal(error, null);
                     return callback(error, res);
-                }, criteria);
+                }, criteriaQuery);
             }, function (callback)
             {
-                let criteria = new Map();
-                criteria.set("id", TimeUuid.fromString(newFoo.id));
-                ;
-                criteria.set("name", newFoo.name);
-                entityManager.findOne(fooMetaModel, function (error, res)
+                let op1 = cb.equal("id", TimeUuid.fromString(foo.id));
+                let op2 = cb.equal("name", newFoo.name);
+                let criteriaQuery = cq.where(cb.and([op1, op2]));
+                entityManager.findOne(function (error, res)
                 {
                     assert.equal(error, null);
                     assert(res instanceof Foo);
                     assert(res.id === id);
                     assert(res.enabled === false);
                     return callback(error, res);
-                }, criteria);
+                }, criteriaQuery);
             }], function (err, results)
             {
                 assert.equal(err, null);
                 return done();
             });
         });
-        it("should findAll Foo by criteria", function (done)
+
+        it("should findAll Foo by criteriaQuery", function (done)
         {
-            let criteria = new Map();
-            criteria.set("id", TimeUuid.fromString(foo.id));
-            ;
-            criteria.set("name", foo.name);
-            entityManager.findAll(fooMetaModel, function (error, res)
+            let op1 = cb.equal("id", TimeUuid.fromString(foo.id));
+            let op2 = cb.equal("name", foo.name);
+            let criteriaQuery = cq.where(cb.and([op1, op2]));
+            entityManager.findAll(function (error, res)
             {
                 assert.equal(error, null);
                 assert.equal(res.length, 1);
@@ -161,19 +167,20 @@ describe("cassandra-persistence", function ()
                 assert(newFoo.id === id);
                 assert(newFoo.enabled === false);
                 return done();
-            }, criteria);
+            }, criteriaQuery);
         });
-        it("should remove Foo by criteria", function (done)
+
+        it("should remove Foo by criteriaQuery", function (done)
         {
-            let criteria = new Map();
-            criteria.set("id", TimeUuid.fromString(foo.id));
-            ;
-            entityManager.removeByCriteria(fooMetaModel, function (error, res)
+            let op1 = cb.equal("id", TimeUuid.fromString(foo.id));
+            let criteriaQuery = cq.where(cb.and([op1]));
+            entityManager.removeByCriteria(function (error, res)
             {
                 assert.equal(error, null);
                 return done();
-            }, criteria);
+            }, criteriaQuery);
         });
+
         it("should persist All Foo", function (done)
         {
             async.series([function (callback)
@@ -186,21 +193,21 @@ describe("cassandra-persistence", function ()
                     });
                     foos.push(f);
                 }
-                entityManager.persistAll(foos, fooMetaModel, function (error, res)
+                entityManager.persistAll(foos, function (error, res)
                 {
                     assert.equal(error, null);
                     return callback(error, res);
                 });
             }, function (callback)
             {
-                let criteria = new Map();
-                criteria.set("name", "manyFoos");
-                entityManager.findAll(fooMetaModel, function (error, res)
+                let op = cb.equal("name", "manyFoos");
+                let criteriaQuery = cq.where(cb.and([op]));
+                entityManager.findAll(function (error, res)
                 {
                     assert.equal(error, null);
                     assert.equal(res.length, 3);
                     return callback(error, res);
-                }, criteria);
+                }, criteriaQuery);
             }], function (err, results)
             {
                 assert.equal(err, null);
