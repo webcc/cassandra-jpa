@@ -143,7 +143,25 @@ entityManager.findOne(function (error, res)
 | getCriteriaBuilder | [metaModel]  | CriteriaBuilder  | get the CriteriaBuilder  |
 | getCriteriaQuery | [metaModel]  | CriteriaQuery  | get the CriteriaQuery |
 
-Note: When a EntityManger is initiated using metaModel argument, the [metaModel] can be ommited. 
+Note: When an EntityManger is initiated using metaModel argument, the [metaModel] can be ommited. 
+
+### CriteriaBuilder 
+
+| Function  | Arguments |Returns |Description |
+| ------------- | ------------- |------------- |------------- |
+| and | expressions:array | q:string | combine expressions with and AND  |
+| equal | x:string, y:ALL | q:string | Tests whether two expressions are equal
+| gt | x:string, y:ALL | q:string |  Tests whether the first numeric expression is greater than the second numeric expression |
+| ge | x:string, y:ALL  | q:string |  Tests whether the first numeric expression is greater than or equal to the second numeric expression |
+| lt | x:string, y:ALL  | q:string | Tests whether the first numeric expression is less than the second numeric expression  |
+| le | x:string, y:ALL  | q:string | Tests whether the first numeric expression is less than or equal to the second numeric expression  |
+
+### CriteriaQuery 
+
+| Function  | Arguments |Returns |Description |
+| ------------- | ------------- |------------- |------------- |
+| from | q, [filtering:boolean]  | q:string |   |
+| where | q  | q:string |   |
 
 ## Extending and Contributing
 
@@ -161,11 +179,6 @@ The Default Row Interceptor is the defaul - abstract way that jpa maps the entit
 The ones not listed are kept as they are, i.e. native support like string, Map etc...
 
 The DefaultRowInterceptor can be easily extended and overrided. 
-
-### PersistenceUtils
-
-- TODO: introduce more jpa utils
-
 
 ## Licence
 
