@@ -11,6 +11,16 @@
         "name": "Web Compliance Center",
         "email": "webcc@fit.fraunhofer.de"
     },
+    "keywords": [
+        "cassandra",
+        "cql",
+        "cql3",
+        "imergo",
+        "webcc",
+        "database",
+        "jpa",
+        "persistence"
+    ],
     "dependencies": {
         "async": "^1.4.2",
         "cassandra-driver": "^2.2.1",
@@ -27,7 +37,7 @@
         }
     },
     "scripts": {
-        "test": "mocha -R spec -t 10000 test/**/*.test.js",
+        "test": "mocha -R spec -t 7000 test/**/*.test.js",
         "jpa:cover": "istanbul cover -x *.test.js _mocha -- -R spec test/*.js"
     },
     "license": {
@@ -37,5 +47,5 @@
     "engines": {
         "node": ">=4.1.0"
     },
-    "homepage": "https://github.com/webcc/typly"
+    "homepage": "https://github.com/webcc/cassandra-jpa"
 }
