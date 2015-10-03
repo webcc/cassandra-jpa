@@ -7,7 +7,7 @@ describe("cassandra-persistence", function ()
 {
     describe("#CassandraClientFactory", function ()
     {
-        let config = (new JPAConfiguration()).cassandra;
+        let config = require("./config/config.js").cassandra;
         config.contactPoints = [ process.env.DBHOST || config.contactPoints[0] ];
         it("should create a client", function (done)
         {
