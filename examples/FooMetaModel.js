@@ -14,6 +14,7 @@ module.exports = class FooMetaModel extends m.MetaModel {
         this.clusteringColumns = new Map([["name", "ASC"]]);
         this.secondaryIndexes = ["name"];
         this.entityClass = Foo;
+        this.ttl = 5000; // if not, set undefined
     }
 
     toRow(entity)
