@@ -80,7 +80,7 @@ describe("cassandra-persistence", function ()
             });
         });
 
-         it("should persist Foo", function (done)
+         it.only("should persist Foo", function (done)
         {
             entityManager.persist(foo, function (error, result)
             {

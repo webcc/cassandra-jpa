@@ -9,7 +9,7 @@ module.exports = class FooMetaModel extends m.MetaModel {
         this.name = "foo";
         this.fields = new Map([["id", "timeuuid"], ["name", "text"], ["created", "timeuuid"],
             ["entity", "text"], ["entities", "list<text>"], ["simpleObjects", "list<text>"],
-            ["enabled", "boolean"]]);
+            ["enabled", "boolean"], ["myMap", "map<text,text>"]]);
         this.partitionKeys = ["id"];
         this.clusteringColumns = new Map([["name", "ASC"]]);
         this.secondaryIndexes = ["name"];

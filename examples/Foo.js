@@ -14,7 +14,26 @@ module.exports = class Foo extends Entity {
         this.entity = new Entity();
         this.entities = [];
         this.simpleObjects = ["a", "b"];
+        this.myMap = new Map();
+        this.myMap.set("test", 2);
         this.enabled = true;
+    }
+
+    set myMap(x)
+    {
+        if(Array.isArray(x))
+        {
+            this._myMap = new Map(x);
+        }
+        else
+        {
+            this._myMap = x;
+        }
+    }
+
+    get myMap()
+    {
+        return this._myMap;
     }
 
     set simpleObjects(x)
