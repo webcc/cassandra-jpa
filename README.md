@@ -14,6 +14,7 @@ $ npm install cassandra-jpa
 ```
 ## Prerequistics
 -  ES6 (Node.js > 4.0.0)
+- [CQL 3](https://cassandra.apache.org/doc/cql3/CQL.html)
 
 ## Design
 
