@@ -88,15 +88,7 @@ class FooMetaModel extends MetaModel {
     this.secondaryIndexes = ["name"];
     this.entityClass = Foo;
   }
-  toRow(entity)
-  {
-   return super.toRow(entity);
-  }
-  fromRow(row)
-  {
-   return super.fromRow(row);
-  }
-    }
+}
 ```
 
 Otherwise you can simply make an instance and pass config param.
@@ -121,20 +113,38 @@ The Default Row Interceptor is the defaul - abstract way that jpa maps the entit
 - timeuuid mapped to require('cassandra-driver').types.TimeUuid
 - text mapped to JSON.stringnify string
 - varchar mapped to JSON.stringnify string
-- map<text,bigint> mapped to 
 - list<text>" mapped to array of JSON.stringnify
 - list<timeuuid> mapped to array of require('cassandra-driver').types.TimeUuid
  
+The ones not listed are kept as they are, i.e. native support like string, Map etc...
+
 The DefaultRowInterceptor can be easily extended and overrided. 
 
-### QueryBuilder
+### Building criteriaQuery example
 
-- TODO: introduce more queries
+```javascript
+let emFactory = m.Persistence.createEntityManagerFactory("Foo", config);
+let entityManager = emFactory.createEntityManager(fooMetaModel);
+let cb = entityManager.getCriteriaBuilder();
+let cq = cb.createQuery();
+let op1 = cb.equal("id", TimeUuid.fromString(foo.id));
+let op2 = cb.equal("name", foo.name);
+let criteriaQuery = cq.where(cb.and([op1, op2]));
+
+entityManager.findOne(function (error, res)
+{
+  assert(newFoo instanceof Foo);
+  return callback(error, res);
+}, criteriaQuery);
+```
 
 ### PersistenceUtils
 
 - TODO: introduce more jpa utils
 
+## API
+
+- TODO
 
 ## Licence
 
