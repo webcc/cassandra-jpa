@@ -126,22 +126,22 @@ entityManager.findOne(function (error, res)
 
 ### EntityManger
 
-| Function  | Arguments |Description |
-| ------------- | ------------- |------------- |
-| persist  | entity, callback, [metaModel]  | Persists an entity  |
-| persistAll | entities, callback, [metaModel]  | TODO  |
-| updateByCriteria | entity, callback, criteriaQuery, [metaModel] | TODO  |
-| removeByCriteria | callback, criteriaQuery, [metaModel]  | TODO  |
-| findOne | callback, criteriaQuery, [metaModel]  | TODO  |
-| findAll | callback, criteriaQuery, [metaModel] | TODO  |
-| query | queryObject, callback  | TODO  |
-| truncate | queryObjects, callback  | TODO  |
-| createTable | callback, [metaModel]  | TODO  |
-| insertIndexes | callback, [metaModel]  | TODO  |
-| dropIndexes | callback, [metaModel]  | TODO  |
-| dropTable | callback, [metaModel]  | TODO  |
-| getCriteriaBuilder | [metaModel]  | TODO  |
-| getCriteriaQuery | [metaModel]  | TODO  |
+| Function  | Arguments |Returns |Description |
+| ------------- | ------------- |------------- |------------- |
+| persist  | entity, callback, [metaModel]  | callback(error, result) | Persist an entity  |
+| persistAll | entities, callback, [metaModel] | callback(error, result)   | Persist an arry of entities  |
+| updateByCriteria | entity, callback, criteriaQuery, [metaModel]  | callback(error, result) | Update Row based on criteriaQuery  |
+| removeByCriteria | callback, criteriaQuery, [metaModel]  | callback(error, result)  | Update Row(s) based on criteriaQuery  |
+| findOne | callback, criteriaQuery, [metaModel]  | callback(error, result)  | Find one entity based on criteriaQuery  |
+| findAll | callback, criteriaQuery, [metaModel] | callback(error, result)  | Find all entities based on criteriaQuery  |
+| query | queryObject, callback  | callback(error, result)  | general cassandra driver query  |
+| truncate | queryObjects, callback  | callback(error, result)  | Truncate a table based on MetaModel  |
+| createTable | callback, [metaModel]  | callback(error, result)  | Create a table based on MetaModel  |
+| insertIndexes | callback, [metaModel]  | callback(error, result)  | Create indexes based on MetaModel |
+| dropIndexes | callback, [metaModel]  | callback(error, result)  | Drop indexes based on MetaModel |
+| dropTable | callback, [metaModel]  | callback(error, result)  | Drop Table based on MetaModel  |
+| getCriteriaBuilder | [metaModel]  | CriteriaBuilder  | get the CriteriaBuilder  |
+| getCriteriaQuery | [metaModel]  | CriteriaQuery  | get the CriteriaQuery |
 
 Note: When a EntityManger is initiated using metaModel argument, the [metaModel] can be ommited. 
 
