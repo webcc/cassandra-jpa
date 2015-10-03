@@ -103,23 +103,6 @@ Otherwise you can simply make an instance and pass config param.
 
 [See more in the foo example](./examples/FooMetaModel.js)
 
-## Extending and Contributing
-
-### DefaultRowInterceptor
-
-The Default Row Interceptor is the defaul - abstract way that jpa maps the entity field to cassandra rows depending on the field type defined in MetaModel. For the moment the following types are supported:
-
-- uuid mapped to require('cassandra-driver').types.TimeUuid
-- timeuuid mapped to require('cassandra-driver').types.TimeUuid
-- text mapped to JSON.stringnify string
-- varchar mapped to JSON.stringnify string
-- list<text>" mapped to array of JSON.stringnify
-- list<timeuuid> mapped to array of require('cassandra-driver').types.TimeUuid
- 
-The ones not listed are kept as they are, i.e. native support like string, Map etc...
-
-The DefaultRowInterceptor can be easily extended and overrided. 
-
 ### Building criteriaQuery example
 
 ```javascript
@@ -137,6 +120,24 @@ entityManager.findOne(function (error, res)
   return callback(error, res);
 }, criteriaQuery);
 ```
+[See more in the test](./test/EntityManager.test.js)
+
+## Extending and Contributing
+
+### DefaultRowInterceptor
+
+The Default Row Interceptor is the defaul - abstract way that jpa maps the entity field to cassandra rows depending on the field type defined in MetaModel. For the moment the following types are supported:
+
+- uuid mapped to require('cassandra-driver').types.TimeUuid
+- timeuuid mapped to require('cassandra-driver').types.TimeUuid
+- text mapped to JSON.stringnify string
+- varchar mapped to JSON.stringnify string
+- list<text>" mapped to array of JSON.stringnify
+- list<timeuuid> mapped to array of require('cassandra-driver').types.TimeUuid
+ 
+The ones not listed are kept as they are, i.e. native support like string, Map etc...
+
+The DefaultRowInterceptor can be easily extended and overrided. 
 
 ### PersistenceUtils
 
