@@ -122,6 +122,29 @@ entityManager.findOne(function (error, res)
 ```
 [See more in the test](./test/EntityManager.test.js)
 
+## API
+
+### EntityManger
+
+| Function  | Arguments |Description |
+| ------------- | ------------- |------------- |
+| persist  | entity, callback, [metaModel]  | Persists an entity  |
+| persistAll | entities, callback, [metaModel]  | TODO  |
+| updateByCriteria | entity, callback, criteriaQuery, [metaModel] | TODO  |
+| removeByCriteria | callback, criteriaQuery, [metaModel]  | TODO  |
+| findOne | callback, criteriaQuery, [metaModel]  | TODO  |
+| findAll | callback, criteriaQuery, [metaModel] | TODO  |
+| query | queryObject, callback  | TODO  |
+| truncate | queryObjects, callback  | TODO  |
+| createTable | callback, [metaModel]  | TODO  |
+| insertIndexes | callback, [metaModel]  | TODO  |
+| dropIndexes | callback, [metaModel]  | TODO  |
+| dropTable | callback, [metaModel]  | TODO  |
+| getCriteriaBuilder | [metaModel]  | TODO  |
+| getCriteriaQuery | [metaModel]  | TODO  |
+
+Note: When a EntityManger is initiated using metaModel argument, the [metaModel] can be ommited. 
+
 ## Extending and Contributing
 
 ### DefaultRowInterceptor
@@ -143,9 +166,6 @@ The DefaultRowInterceptor can be easily extended and overrided.
 
 - TODO: introduce more jpa utils
 
-## API
-
-- TODO
 
 ## Licence
 
