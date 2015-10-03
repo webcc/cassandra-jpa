@@ -62,7 +62,6 @@ describe("cassandra-persistence", function ()
                 return done();
             });
         });
-
         it("should insert Indexes to Table foo", function (done)
         {
             entityManager.insertIndexes(function (error, res)
@@ -79,8 +78,7 @@ describe("cassandra-persistence", function ()
                 return done();
             });
         });
-
-         it.only("should persist Foo", function (done)
+        it("should persist Foo", function (done)
         {
             entityManager.persist(foo, function (error, result)
             {
@@ -88,7 +86,6 @@ describe("cassandra-persistence", function ()
                 return done();
             });
         });
-
         it("should findOne Foo by criteriaQuery", function (done)
         {
             let op1 = cb.equal("id", TimeUuid.fromString(foo.id));
@@ -104,7 +101,6 @@ describe("cassandra-persistence", function ()
                 return done();
             }, criteriaQuery);
         });
-
         it("should update foo", function (done)
         {
             let newFoo;
@@ -152,7 +148,6 @@ describe("cassandra-persistence", function ()
                 return done();
             });
         });
-
         it("should findAll Foo by criteriaQuery", function (done)
         {
             let op1 = cb.equal("id", TimeUuid.fromString(foo.id));
@@ -168,7 +163,6 @@ describe("cassandra-persistence", function ()
                 return done();
             }, criteriaQuery);
         });
-
         it("should remove Foo by criteriaQuery", function (done)
         {
             let op1 = cb.equal("id", TimeUuid.fromString(foo.id));
@@ -179,7 +173,6 @@ describe("cassandra-persistence", function ()
                 return done();
             }, criteriaQuery);
         });
-
         it("should persist All Foo", function (done)
         {
             async.series([function (callback)
