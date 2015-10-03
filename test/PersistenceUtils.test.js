@@ -47,5 +47,24 @@ describe("cassandra-persistence", function ()
                 }, RangeError);
             });
         });
+        describe("#bindToJSON", function ()
+        {
+            let entity =
+            {
+                _id: "id",
+                _name: "name",
+                echo: function echo (s)
+                {
+                    return s;
+                }
+            };
+            it("should bind toJSON", function ()
+            {
+                let newEntity = m.PersistenceUtils.bindToJSON(entity);
+                let o = JSON.parse(JSON.stringify(newEntity));
+                assert(typeof newEntity.toJSON === "function");
+                assert.equal(o.id, newEntity._id);
+            });
+        });
     });
 });
