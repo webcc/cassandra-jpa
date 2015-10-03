@@ -68,6 +68,9 @@ Requirements
 configuration = new jpa.JPAConfiguration();
 configuration.cassandra.contactPoints = ["localhost"];
 configuration.cassandra.keyspace = "tests";
+configuration.logQueryObject = false; // make true for debug queries
+// configuration.logger = mylogger
+
 ```
 
 ### Implement your MetaModel class by extending the MetaModel or passing config as parameter
