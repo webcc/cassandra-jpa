@@ -68,6 +68,9 @@ Requirements
 configuration = new jpa.JPAConfiguration();
 configuration.cassandra.contactPoints = ["localhost"];
 configuration.cassandra.keyspace = "tests";
+configuration.logQueryObject = false; // make true for debug queries
+// configuration.logger = mylogger
+
 ```
 
 ### Implement your MetaModel class by extending the MetaModel or passing config as parameter
@@ -88,6 +91,7 @@ class FooMetaModel extends MetaModel {
     this.clusteringColumns = new Map([["name", "ASC"]]);
     this.secondaryIndexes = ["name"];
     this.entityClass = Foo;
+    this.ttl = undefined; //no ttl, or X secs, e.g. 86400 for one day
   }
 }
 ```
