@@ -1,7 +1,8 @@
 "use strict";
-let m = require("..");
+let MetaModel = require("../lib/MetaModel");
 let Foo = require("./Foo");
-module.exports = class FooMetaModel extends m.MetaModel {
+let Entity = require("../lib/Entity");
+module.exports = class FooMetaModel extends MetaModel {
     constructor(keySpace)
     {
         super({});
@@ -25,13 +26,13 @@ module.exports = class FooMetaModel extends m.MetaModel {
     fromRow(row)
     {
         let entity = super.fromRow(row);
-        entity.entity = new m.Entity(JSON.parse(JSON.stringify(row.entity)));
+        entity.entity = new Entity(JSON.parse(JSON.stringify(row.entity)));
         entity.entities = [];
         if (row.entities)
         {
             row.entities.forEach(function (element, index, array)
             {
-                let e = new m.Entity(JSON.parse(JSON.stringify(element)));
+                let e = new Entity(JSON.parse(JSON.stringify(element)));
                 entity.entities.push(e);
             });
         }
