@@ -127,6 +127,27 @@ entityManager.findOne(function (error, res)
 ```
 [See more in the test](./test/EntityManager.test.js)
 
+### Override - extend object model adaptation methods in you MetaModel
+
+This need to be done if the DefaultRowInterceptor does not cover your needs. Alternatively you could extend or replace the DefaultRowInterceptor and maybe also contribute the ideas here.
+
+```javascript
+toRow(entity)
+{
+ // my specifics
+ let row super.toRow(entity);
+  // my specifics
+ return row;
+}
+fromRow(row)
+{
+ let entity = super.fromRow(row);
+ // my specifics
+ return entity;
+}
+```
+[See more in the test](./test/EntityManager.test.js)
+
 ## API
 
 ### EntityManger
