@@ -3,10 +3,9 @@ let MetaModel = require("../lib/MetaModel");
 let Foo = require("./Foo");
 let Entity = require("../lib/Entity");
 module.exports = class FooMetaModel extends MetaModel {
-    constructor(keySpace)
+    constructor(jpaConfig)
     {
-        super({});
-        this.keySpace = keySpace;
+        super(jpaConfig);
         this.name = "foo";
         this.fields = new Map([["id", "timeuuid"], ["name", "text"], ["created", "timeuuid"],
             ["entity", "text"], ["entities", "list<text>"], ["simpleObjects", "list<text>"],
@@ -15,7 +14,6 @@ module.exports = class FooMetaModel extends MetaModel {
         this.clusteringColumns = new Map([["name", "ASC"]]);
         this.secondaryIndexes = ["name"];
         this.entityClass = Foo;
-        this.ttl = 5000; // if not, set undefined
     }
 
     toRow(entity)

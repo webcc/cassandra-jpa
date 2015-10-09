@@ -9,6 +9,6 @@ function initConfig()
     configuration.cassandra.keyspace = "tests";
     configuration.logQueryObject = process.env.JPA_LOG || false;
     configuration.cassandra.contactPoints = [process.env.JPA_HOST || configuration.cassandra.contactPoints[0]];
-    configuration.cassandra.keyspace = process.env.JPA_KEYSPACE || configuration.cassandra.keyspace;
+    configuration.keySpace = process.env.JPA_KEYSPACE || configuration.keySpace;
     return configuration;
 }
