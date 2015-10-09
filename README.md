@@ -208,6 +208,11 @@ The ones not listed are kept as they are, i.e. native support like string, Map e
 
 The DefaultRowInterceptor can be easily extended and overrided. 
 
+## TODO Features
+
+- Count Results
+- Count time
+
 ## Licence
 
 [See](./LICENSE.md)
