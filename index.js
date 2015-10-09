@@ -6,6 +6,7 @@ module.exports = {
     PersistenceUtils: require("./lib/PersistenceUtils"),
     Persistence: require("./lib/Persistence"),
     EntityManager: require("./lib/EntityManager"),
+    EntityManagerFactory: require("./lib/EntityManagerFactory"),
     Entity: require("./lib/Entity"),
     CassandraClientFactory: require("./lib/CassandraClientFactory"),
     err: require("./lib/errors"),
