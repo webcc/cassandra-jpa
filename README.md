@@ -73,7 +73,7 @@ configuration.logQueryObject = false; // make true for debug queries
 
 ```
 
-### Implement your MetaModel class by extending the MetaModel or passing config as parameter
+### Implement your MetaModel class by extending the MetaModel
 
 If you need to override the default toRow, fromRow function of the MetaModel, you need to extend the MetaModel class.
 
@@ -94,16 +94,6 @@ class FooMetaModel extends MetaModel {
     this.ttl = undefined; //no ttl, or X secs, e.g. 86400 for one day
   }
 }
-```
-
-Otherwise you can simply make an instance and pass config param.
-
-```javascript
- let config = {
-     name: "foo";
-     etc..
- }
- let myModel = new MetaModel(config);
 ```
 
 [See more in the foo example](./examples/FooMetaModel.js)
