@@ -117,7 +117,9 @@ let cb = entityManager.getCriteriaBuilder();
 let cq = cb.createQuery();
 let op1 = cb.equal("id", TimeUuid.fromString(foo.id));
 let op2 = cb.equal("name", foo.name);
-let criteriaQuery = cq.where(cb.and([op1, op2]));
+let limit = 1;
+let orderBy = "name";
+let criteriaQuery = cq.where(cb.and([op1, op2]),limit, orderBy, true);
 
 entityManager.findOne(function (error, res)
 {
@@ -186,8 +188,8 @@ Note: When an EntityManger is initiated using metaModel argument, the [metaModel
 
 | Function  | Arguments |Returns |Description |
 | ------------- | ------------- |------------- |------------- |
-| from | q, [filtering:boolean]  | q:string |   |
-| where | q  | q:string |   |
+| from | q  | q:string |   |
+| where | q, [limit:Number] , [orderBy:String], [allowFiltering:boolean]  | q:string |   |
 
 ## Extending and Contributing
 
