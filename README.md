@@ -73,7 +73,7 @@ configuration.logQueryObject = false; // make true for debug queries
 
 ```
 
-### Implement your MetaModel class by extending the MetaModel or passing config as parameter
+### Implement your MetaModel class by extending the MetaModel
 
 If you need to override the default toRow, fromRow function of the MetaModel, you need to extend the MetaModel class.
 
@@ -96,16 +96,6 @@ class FooMetaModel extends MetaModel {
 }
 ```
 
-Otherwise you can simply make an instance and pass config param.
-
-```javascript
- let config = {
-     name: "foo";
-     etc..
- }
- let myModel = new MetaModel(config);
-```
-
 [See more in the foo example](./examples/FooMetaModel.js)
 
 ### Building criteriaQuery example
@@ -117,13 +107,36 @@ let cb = entityManager.getCriteriaBuilder();
 let cq = cb.createQuery();
 let op1 = cb.equal("id", TimeUuid.fromString(foo.id));
 let op2 = cb.equal("name", foo.name);
-let criteriaQuery = cq.where(cb.and([op1, op2]));
+let limit = 1;
+let orderBy = "name";
+let criteriaQuery = cq.where(cb.and([op1, op2]),limit, orderBy, true);
 
 entityManager.findOne(function (error, res)
 {
   assert(newFoo instanceof Foo);
   return callback(error, res);
 }, criteriaQuery);
+```
+[See more in the test](./test/EntityManager.test.js)
+
+### Override - extend object model adaptation methods in you MetaModel
+
+This need to be done if the DefaultRowInterceptor does not cover your needs. Alternatively you could extend or replace the DefaultRowInterceptor and maybe also contribute the ideas here.
+
+```javascript
+toRow(entity)
+{
+ // my specifics
+ let row super.toRow(entity);
+  // my specifics
+ return row;
+}
+fromRow(row)
+{
+ let entity = super.fromRow(row);
+ // my specifics
+ return entity;
+}
 ```
 [See more in the test](./test/EntityManager.test.js)
 
@@ -165,8 +178,8 @@ Note: When an EntityManger is initiated using metaModel argument, the [metaModel
 
 | Function  | Arguments |Returns |Description |
 | ------------- | ------------- |------------- |------------- |
-| from | q, [filtering:boolean]  | q:string |   |
-| where | q  | q:string |   |
+| from | q  | q:string |   |
+| where | q, [limit:Number] , [orderBy:String], [allowFiltering:boolean]  | q:string |   |
 
 ## Extending and Contributing
 
@@ -184,6 +197,11 @@ The Default Row Interceptor is the defaul - abstract way that jpa maps the entit
 The ones not listed are kept as they are, i.e. native support like string, Map etc...
 
 The DefaultRowInterceptor can be easily extended and overrided. 
+
+## TODO Features
+
+- Count Results
+- Count time
 
 ## Licence
 

@@ -9,8 +9,8 @@ describe("cassandra-persistence", function ()
 {
     describe("#EntityManager", function ()
     {
-        let config = require("./config/config.js");
-        let fooMetaModel = new FooMetaModel(config.cassandra.keyspace);
+        let jpaConfig = require("./config/config.js");
+        let fooMetaModel = new FooMetaModel(jpaConfig);
         let entityManager;
         let foo = new Foo({
             name: "test",
@@ -22,7 +22,7 @@ describe("cassandra-persistence", function ()
         let cb, cq;
         before(function ()
         {
-            let emFactory = m.Persistence.createEntityManagerFactory("Foo", config);
+            let emFactory = m.Persistence.createEntityManagerFactory("Foo", jpaConfig);
             entityManager = emFactory.createEntityManager(fooMetaModel);
             cb = entityManager.getCriteriaBuilder();
             cq = cb.createQuery();

@@ -1,5 +1,5 @@
 "use strict";
-let Entity = require("..").Entity;
+let Entity = require("../lib/Entity");
 module.exports = class Foo extends Entity {
     constructor(config)
     {
