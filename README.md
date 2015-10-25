@@ -15,7 +15,7 @@ $ npm install cassandra-jpa
 
 ## Prerequistics
 
--  ES6 (Node.js > 4.0.0)
+- ES6 (Node.js > 4.1.0)
 - [CQL 3](https://cassandra.apache.org/doc/cql3/CQL.html)
 
 ## Design
@@ -41,11 +41,6 @@ $ npm install cassandra-jpa
 - OOP using classes
 - Self explainable API
 - Following [NODE.js best practices](https://blog.risingstack.com/node-js-best-practices/ "RisingStack Engineering Blog")
-
-## Getting Help
-
-You can  [contact WebCC directly!](http://www.imergo.com) or create an GitHub issue.
-
 
 ## Basic usage
 
@@ -116,6 +111,7 @@ entityManager.findOne(function (error, res)
   return callback(error, res);
 }, criteriaQuery);
 ```
+
 [See more in the test](./test/EntityManager.test.js)
 
 ### Override - extend object model adaptation methods in you MetaModel
