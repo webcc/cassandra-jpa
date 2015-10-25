@@ -1,6 +1,6 @@
 {
     "name": "cassandra-jpa",
-    "version": "0.4.1",
+    "version": "0.4.2",
     "description": "Imergo Node.js Javascript Persistence API for Apache Cassandra.",
     "main": "index.js",
     "repository": {
@@ -22,11 +22,12 @@
         "persistence"
     ],
     "dependencies": {
-        "async": "^1.4.2",
-        "cassandra-driver": "^2.2.1",
-        "string": "^3.3.1",
-        "underscore": "^1.8.3",
-        "winston": "^1.0.1"
+        "async": "1.4.2",
+        "cassandra-driver": "2.2.2",
+        "string": "3.3.1",
+        "typly": "0.2.0",
+        "underscore": "1.8.3",
+        "winston": "1.1.1"
     },
     "devDependencies": {
         "mocha": "*"
@@ -40,10 +41,7 @@
         "test": "mocha -R spec -t 7000 test/**/*.test.js",
         "jpa:cover": "istanbul cover -x *.test.js _mocha -- -R spec test/*.js"
     },
-    "license": {
-        "type": "Apache-2.0",
-        "url": "https://github.com/webcc/typly/blob/master/LICENSE.md"
-    },
+    "license": "Apache-2.0",
     "engines": {
         "node": ">=4.1.0"
     },
