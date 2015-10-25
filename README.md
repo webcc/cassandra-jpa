@@ -1,4 +1,4 @@
-# [Imergo](https://imergo.com/solutions/imergo.html) Javascript (Node.js) Persistence API (JPA) for Apache Cassandra
+# Javascript (Node.js) Persistence API (JPA) for Apache Cassandra
 
 A persistence layer for using Cassandra with Node.js based on the latest [DataStax Cassandra Driver](https://blog.risingstack.com/node-js-best-practices/ ). 
 This module brings features from the Java World (JPA) and try to make life with Cassandra easier, mostly for people coming from the JAVA World.
@@ -12,7 +12,9 @@ The idea is to make the API as similar as possible to the [latest JPA](http://do
 ```bash
 $ npm install cassandra-jpa
 ```
+
 ## Prerequistics
+
 -  ES6 (Node.js > 4.0.0)
 - [CQL 3](https://cassandra.apache.org/doc/cql3/CQL.html)
 
@@ -21,7 +23,6 @@ $ npm install cassandra-jpa
 - Flexible configuration
  - Datastax Cassandra Driver Configuration
  - Configurable entity class, (TODO: allow for not having to extend - interface-like style) 
- - Configurable logger
 - OOP using classes
 - Self explainable Java (JPA) API based/inspired
 - [NODE.js best practices](https://blog.risingstack.com/node-js-best-practices/ "RisingStack Engineering Blog")
@@ -35,7 +36,7 @@ $ npm install cassandra-jpa
 - Flexible configuration
  - Datastax Cassandra Driver Configuration
  - Configurable base entity class, (or use of Symbol as Interface still TODO) 
- - Configurable logging both in PersistenceConfiguration and EAO
+- Logging through the `debug` module (set the environment variable `DEBUG` to `cassandra-jpa`)
 - ES6 (Node.js > 4.0.0)
 - OOP using classes
 - Self explainable API
@@ -69,8 +70,6 @@ configuration = new jpa.JPAConfiguration();
 configuration.cassandra.contactPoints = ["localhost"];
 configuration.cassandra.keyspace = "tests";
 configuration.logQueryObject = false; // make true for debug queries
-// configuration.logger = mylogger
-
 ```
 
 ### Implement your MetaModel class by extending the MetaModel
