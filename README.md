@@ -176,22 +176,22 @@ Note: When an EntityManger is initiated using metaModel argument, the [metaModel
 | from | q  | q:string |   |
 | where | q, [limit:Number] , [orderBy:String], [allowFiltering:boolean]  | q:string |   |
 
-## Extending and Contributing
+## Extending
 
 ### DefaultRowInterceptor
 
-The Default Row Interceptor is the defaul - abstract way that jpa maps the entity field to cassandra rows depending on the field type defined in MetaModel. For the moment the following types are supported:
+The `DefaultRowInterceptor` is the defaul and abstract way that jpa maps the entity field to cassandra rows depending on the field type defined in MetaModel. The following types are supported:
 
 - uuid mapped to require('cassandra-driver').types.TimeUuid
 - timeuuid mapped to require('cassandra-driver').types.TimeUuid
 - text mapped to JSON.stringnify string
 - varchar mapped to JSON.stringnify string
-- list<text>" mapped to array of JSON.stringnify
+- list<text> mapped to array of JSON.stringnify
 - list<timeuuid> mapped to array of require('cassandra-driver').types.TimeUuid
  
 The ones not listed are kept as they are, i.e. native support like string, Map etc...
 
-The DefaultRowInterceptor can be easily extended and overrided. 
+The `DefaultRowInterceptor` can be extended and overriden. 
 
 ## TODO Features
 
@@ -200,4 +200,4 @@ The DefaultRowInterceptor can be easily extended and overrided.
 
 ## Licence
 
-[See](./LICENSE.md)
+See [license file](./LICENSE.md).
