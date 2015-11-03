@@ -64,7 +64,6 @@ Requirements
 configuration = new jpa.JPAConfiguration();
 configuration.cassandra.contactPoints = ["localhost"];
 configuration.cassandra.keyspace = "tests";
-configuration.logQueryObject = false; // make true for debug queries
 ```
 
 ### Implement your MetaModel class by extending the MetaModel
@@ -73,10 +72,9 @@ If you need to override the default toRow, fromRow function of the MetaModel, yo
 
 ```javascript
 class FooMetaModel extends MetaModel {
-  constructor(keySpace)
+  constructor(jpaConfig)
   {
-    super({});
-    this.keySpace = keySpace;
+    super(jpaConfig); 
     this.name = "foo";
     this.fields = new Map([["id", "timeuuid"], ["name", "text"], ["created", "timeuuid"],
         ["entity", "text"], ["entities", "list<text>"], ["simpleObjects", "list<text>"],
