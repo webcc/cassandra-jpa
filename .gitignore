@@ -10,3 +10,4 @@ logs
 npm-debug.log
 node_modules
 config.cmd
+coverage

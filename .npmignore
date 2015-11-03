@@ -1,3 +1,5 @@
 .idea
 doc/
 node_modules
+coverage
+config.cmd
