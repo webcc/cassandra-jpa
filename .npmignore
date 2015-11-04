@@ -3,3 +3,5 @@ doc/
 node_modules
 coverage
 config.cmd
+examples
+test
