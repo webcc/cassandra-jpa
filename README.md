@@ -133,6 +133,32 @@ fromRow(row)
 ```
 [See more in the test](./test/EntityManager.test.js)
 
+### When cassandra table should have extra properties comparing to the entity
+
+In our metamodel class, initialize the extra params by giving the param names and an initial value (mostly null).
+
+```javascript
+// add the extra field to the db schema
+this.fields.set("newField", "text");
+// allow for taking into account when querying
+this.extraParams.set("newField", null);
+```
+[See more in the action](./examples/ExtendedFooMetaModel.js)
+
+Then when persisting we add the extra params like this: 
+
+```javascript
+fooMetaModel.extraParams.set("newField", "some value");
+```
+
+And when we select from db we get of course the entity (missing the extra params) but we can get the extra ones doing:
+
+```javascript
+fooMetaModel.extraParams.get("newField")
+```
+[See more in the action](./test/EntityManagerExtraParams.test.js) 
+
+
 ## API
 
 ### EntityManger
