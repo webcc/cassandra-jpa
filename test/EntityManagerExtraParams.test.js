@@ -11,7 +11,7 @@ describe("cassandra-persistence", function ()
     {
         let jpaConfig = require("./config/config.js");
         let fooMetaModel = new ExtendedFooMetaModel(jpaConfig);
-        fooMetaModel.paramsObject.newField = "some value";
+        fooMetaModel.extraParams.set("newField", "some value");
         let entityManager;
         let foo = new Foo({
             name: "test",
@@ -33,18 +33,16 @@ describe("cassandra-persistence", function ()
         it("should convert entity toRow", function ()
         {
             let row = fooMetaModel.toRow(foo);
-            assert.equal(row.newField, fooMetaModel.paramsObject.newField);
+            assert.equal(row.newField, fooMetaModel.extraParams.get("newField"));
             assert.equal(typeof row.entity === "string", true);
             assert.equal(row.entities.length, 2);
             assert.equal(row.entities[0] instanceof Foo, false);
         });
-        it.only("should convert row to entity", function ()
+        it("should convert row to entity", function ()
         {
             let row = fooMetaModel.toRow(foo);
             let entity = fooMetaModel.fromRow(row);
-            assert.equal(row.newField, entity.newField);
-
-
+            assert.equal(row.newField, fooMetaModel.extraParams.get("newField"));
             assert.equal(entity instanceof Foo, true);
             assert.equal(typeof entity.id === "string", true);
             assert.equal(entity.entity instanceof m.Entity, true);
@@ -85,6 +83,7 @@ describe("cassandra-persistence", function ()
         });
         it("should persist Foo", function (done)
         {
+            fooMetaModel.extraParams.set("newField", "Hello");
             entityManager.persist(foo, function (error, result)
             {
                 assert.equal(error, null);
@@ -93,6 +92,7 @@ describe("cassandra-persistence", function ()
         });
         it("should findOne Foo by criteriaQuery", function (done)
         {
+            fooMetaModel.extraParams.set("newField", null);
             let op1 = cb.equal("id", TimeUuid.fromString(foo.id));
             let q1 = cb.and([op1]);
             let criteriaQuery = cq.where(cb.and([op1]));
@@ -103,6 +103,7 @@ describe("cassandra-persistence", function ()
                 assert(res instanceof Foo);
                 assert(res.id === id);
                 assert.equal(res.name, "test");
+                assert.equal(fooMetaModel.extraParams.get("newField"), "Hello");
                 return done();
             }, criteriaQuery);
         });

@@ -6,20 +6,10 @@ module.exports = class ExtendedFooMetaModel extends FooMetaModel {
     { 
         super(jpaConfig);
         this.name = "extendedFoo";
-        this.fields.set("newField", "text");
         this.entityClass = Foo;
-        this.paramsObject = {
-            newField: null
-        }
-    }
-
-    toRow(entity)
-    {
-        return super.toRow(entity);
-    }
-
-    fromRow(row)
-    {
-        return super.fromRow(row);
+        // add the extra field to the db schema
+        this.fields.set("newField", "text");
+        // allow for taking into account when querying
+        this.extraParams.set("newField", null);
     }
 };
