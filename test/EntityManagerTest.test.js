@@ -14,7 +14,7 @@ describe("cassandra-jpa::EntityManager", function ()
         entities: [new m.Entity(), new m.Entity()]
     });
     let test = new m.EntityManagerTest({
-        jpaConfig: require("./config/config.js"),
+        jpaConfig: new m.JPAConfiguration(),
         metaModelClass: FooMetaModel,
         entityClass: Foo,
         entity: entity,

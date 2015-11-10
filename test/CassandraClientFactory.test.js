@@ -5,8 +5,8 @@ let cassandra = require('cassandra-driver');
 let JPAConfiguration = require("../lib/JPAConfiguration");
 describe("cassandra-jpa::CassandraClientFactory", function ()
 {
-    let config = require("./config/config.js").cassandra;
-    config.contactPoints = [process.env.DBHOST || config.contactPoints[0]];
+    let jpaConfig = new JPAConfiguration();
+    let config = jpaConfig.cassandra;
     it("should create a client", function (done)
     {
         let client = CassandraClientFactory.getClient(config);

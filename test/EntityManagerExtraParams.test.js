@@ -7,7 +7,7 @@ let Foo = require("../examples/Foo");
 let ExtendedFooMetaModel = require("../examples/ExtendedFooMetaModel");
 describe("cassandra-jpa::EntityManager", function ()
 {
-    let jpaConfig = require("./config/config.js");
+    let jpaConfig = new m.JPAConfiguration();
     let fooMetaModel = new ExtendedFooMetaModel(jpaConfig);
     fooMetaModel.extraParams.set("newField", "some value");
     let entityManager;
