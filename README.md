@@ -31,7 +31,7 @@ $ npm install cassandra-jpa
 
 - Create, Drop Cassandra Tables programmatically
 - Create Indexes
-- Persist Javascript entities
+- Persist Javascript entities (JS Class extending Entity or Pure JS Objects)
 - Remove Javascript entities
 - Flexible configuration
  - Datastax Cassandra Driver Configuration
@@ -64,6 +64,17 @@ Requirements
 configuration = new jpa.JPAConfiguration();
 configuration.cassandra.contactPoints = ["localhost"];
 configuration.cassandra.keyspace = "tests";
+```
+
+Make sure you defined the TTL - default in config or in every MetaModel. Set undefined if you do not need a TTL
+
+You can use also ENV vars: 
+
+```bash
+$ export CASSANDRA_DBHOST=myhost
+$ export CASSANDRA_KEYSPACE=mykeyspace
+$ export CASSANDRA_TTL=Number of seconds for default TTL
+
 ```
 
 ### Implement your MetaModel class by extending the MetaModel
