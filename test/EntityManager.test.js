@@ -29,6 +29,8 @@ describe("cassandra-jpa::EntityManager", function ()
     it("should convert entity toRow", function ()
     {
         let row = fooMetaModel.toRow(foo);
+        assert.equal(typeof row.id === "object", true);
+        assert.equal(row.id instanceof m.PersistenceUtils.getDriver().types.TimeUuid, true);
         assert.equal(typeof row.entity === "string", true);
         assert.equal(row.entities.length, 2);
         assert.equal(row.entities[0] instanceof Foo, false);
