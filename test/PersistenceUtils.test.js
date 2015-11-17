@@ -1,6 +1,5 @@
 "use strict";
 let assert = require("assert");
-let cassandra = require('cassandra-driver');
 let uuid = require('uuid');
 let m = require("..");
 describe("cassandra-jpa::PersistenceUtils", function ()
@@ -8,6 +7,7 @@ describe("cassandra-jpa::PersistenceUtils", function ()
     describe("#toTimeUuid", function ()
     {
         let id;
+        let cassandra = m.PersistenceUtils.getDriver();
         before(function ()
         {
             id = uuid.v1();
