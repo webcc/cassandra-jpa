@@ -1,49 +1,50 @@
 {
-    "name": "cassandra-jpa",
-    "version": "0.6.2",
-    "description": "Imergo Node.js Javascript Persistence API for Apache Cassandra.",
-    "main": "index.js",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/webcc/cassandra-jpa.git"
-    },
-    "author": {
-        "name": "Web Compliance Center",
-        "email": "webcc@fit.fraunhofer.de"
-    },
-    "keywords": [
-        "cassandra",
-        "cql",
-        "cql3",
-        "imergo",
-        "webcc",
-        "database",
-        "jpa",
-        "persistence"
-    ],
-    "dependencies": {
-        "async": "1.4.2",
-        "cassandra-driver": "2.2.2",
-        "debug": "2.2.0",
-        "string": "3.3.1",
-        "typly": "latest",
-        "underscore": "1.8.3"
-    },
-    "devDependencies": {
-        "mocha": "*"
-    },
-    "config": {
-        "ghooks": {
-            "pre-commit": "npm run jpa:test"
-        }
-    },
-    "scripts": {
-        "jpa:test": "mocha -R spec -t 7000 test/**/*.test.js",
-        "jpa:cover": "istanbul cover -x *.test.js node_modules/mocha/bin/_mocha"
-    },
-    "license": "Apache-2.0",
-    "engines": {
-        "node": ">=4.1.0"
-    },
-    "homepage": "https://github.com/webcc/cassandra-jpa"
+  "name": "cassandra-jpa",
+  "version": "0.6.2",
+  "description": "Imergo Node.js Javascript Persistence API for Apache Cassandra.",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/webcc/cassandra-jpa.git"
+  },
+  "author": {
+    "name": "Web Compliance Center",
+    "email": "webcc@fit.fraunhofer.de"
+  },
+  "keywords": [
+    "cassandra",
+    "cql",
+    "cql3",
+    "imergo",
+    "webcc",
+    "database",
+    "jpa",
+    "persistence"
+  ],
+  "dependencies": {
+    "async": "1.4.2",
+    "cassandra-driver": "2.2.2",
+    "debug": "2.2.0",
+    "string": "3.3.1",
+    "typly": "latest",
+    "underscore": "1.8.3",
+    "uuid": "^2.0.1"
+  },
+  "devDependencies": {
+    "mocha": "*"
+  },
+  "config": {
+    "ghooks": {
+      "pre-commit": "npm run jpa:test"
+    }
+  },
+  "scripts": {
+    "jpa:test": "mocha -R spec -t 7000 test/**/*.test.js",
+    "jpa:cover": "istanbul cover -x *.test.js node_modules/mocha/bin/_mocha"
+  },
+  "license": "Apache-2.0",
+  "engines": {
+    "node": ">=4.1.0"
+  },
+  "homepage": "https://github.com/webcc/cassandra-jpa"
 }

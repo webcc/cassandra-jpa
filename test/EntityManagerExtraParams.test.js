@@ -1,7 +1,6 @@
 "use strict";
 let assert = require("assert");
 let async = require("async");
-let TimeUuid = require('cassandra-driver').types.TimeUuid;
 let m = require("..");
 let Foo = require("../examples/Foo");
 let ExtendedFooMetaModel = require("../examples/ExtendedFooMetaModel");
@@ -91,7 +90,7 @@ describe("cassandra-jpa::EntityManager", function ()
     it("should findOne Foo by criteriaQuery", function (done)
     {
         fooMetaModel.extraParams.set("newField", null);
-        let op1 = cb.equal("id", TimeUuid.fromString(foo.id));
+        let op1 = cb.equal("id", foo.id);
         let q1 = cb.and([op1]);
         let criteriaQuery = cq.where(cb.and([op1]));
         assert(foo.name === "test");
@@ -110,7 +109,7 @@ describe("cassandra-jpa::EntityManager", function ()
         let newFoo;
         async.series([function (callback)
         {
-            let op1 = cb.equal("id", TimeUuid.fromString(foo.id));
+            let op1 = cb.equal("id", foo.id);
             let op2 = cb.equal("name", foo.name);
             let criteriaQuery = cq.where(cb.and([op1, op2]));
             entityManager.findOne(function (error, res)
@@ -125,7 +124,7 @@ describe("cassandra-jpa::EntityManager", function ()
         }, function (callback)
         {
             newFoo.enabled = false;
-            let op1 = cb.equal("id", TimeUuid.fromString(foo.id));
+            let op1 = cb.equal("id", foo.id);
             let op2 = cb.equal("name", newFoo.name);
             let criteriaQuery = cq.where(cb.and([op1, op2]));
             entityManager.updateByCriteria(newFoo, function (error, res)
@@ -135,7 +134,7 @@ describe("cassandra-jpa::EntityManager", function ()
             }, criteriaQuery);
         }, function (callback)
         {
-            let op1 = cb.equal("id", TimeUuid.fromString(foo.id));
+            let op1 = cb.equal("id", foo.id);
             let op2 = cb.equal("name", newFoo.name);
             let criteriaQuery = cq.where(cb.and([op1, op2]));
             entityManager.findOne(function (error, res)
@@ -154,7 +153,7 @@ describe("cassandra-jpa::EntityManager", function ()
     });
     it("should findAll Foo by criteriaQuery", function (done)
     {
-        let op1 = cb.equal("id", TimeUuid.fromString(foo.id));
+        let op1 = cb.equal("id", foo.id);
         let op2 = cb.equal("name", foo.name);
         let criteriaQuery = cq.where(cb.and([op1, op2]));
         entityManager.findAll(function (error, res)
@@ -169,7 +168,7 @@ describe("cassandra-jpa::EntityManager", function ()
     });
     it("should remove Foo by criteriaQuery", function (done)
     {
-        let op1 = cb.equal("id", TimeUuid.fromString(foo.id));
+        let op1 = cb.equal("id", foo.id);
         let criteriaQuery = cq.where(cb.and([op1]));
         entityManager.removeByCriteria(function (error, res)
         {

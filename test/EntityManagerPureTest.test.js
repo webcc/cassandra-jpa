@@ -1,13 +1,13 @@
 "use strict";
 let assert = require("assert");
 let async = require("async");
-let TimeUuid = require('cassandra-driver').types.TimeUuid;
+let uuid = require('uuid');
 let m = require("..");
 let PureMetaModel = require("../examples/PureMetaModel");
 describe("cassandra-jpa::EntityManagerPure", function ()
 {
     let entity = {
-        id: TimeUuid.now().toString(),
+        id: uuid.v1(),
         name: "test"
     };
     let test = new m.EntityManagerTest({
@@ -18,7 +18,7 @@ describe("cassandra-jpa::EntityManagerPure", function ()
         testField: "name",
         testFieldValue: "test",
         idField: "id",
-        idValue: TimeUuid.fromString(entity.id),
+        idValue: entity.id,
         criteriaQuery: "" 
     });
     before(function ()

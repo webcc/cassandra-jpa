@@ -1,6 +1,7 @@
 "use strict";
 let assert = require("assert");
 let cassandra = require('cassandra-driver');
+let uuid = require('uuid');
 let m = require("..");
 describe("cassandra-jpa::PersistenceUtils", function ()
 {
@@ -9,7 +10,7 @@ describe("cassandra-jpa::PersistenceUtils", function ()
         let id;
         before(function ()
         {
-            id = cassandra.types.TimeUuid.now();
+            id = uuid.v1();
             assert(id instanceof cassandra.types.TimeUuid);
         });
         it("should convert from TimeUuid", function ()
