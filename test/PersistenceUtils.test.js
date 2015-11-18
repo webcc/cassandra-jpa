@@ -11,7 +11,6 @@ describe("cassandra-jpa::PersistenceUtils", function ()
         before(function ()
         {
             id = uuid.v1();
-            assert(id instanceof cassandra.types.TimeUuid);
         });
         it("should convert from TimeUuid", function ()
         {
