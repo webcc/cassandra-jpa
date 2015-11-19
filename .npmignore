@@ -3,4 +3,4 @@ doc/
 node_modules
 coverage
 config.cmd
-test
+test/*.test.js

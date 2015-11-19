@@ -10,9 +10,11 @@ module.exports = {
     Entity: require("./lib/Entity"),
     CassandraClientFactory: require("./lib/CassandraClientFactory"),
     err: require("./lib/JPAErrors"),
-    EntityManagerTest: require("./lib/EntityManagerTest"),
-    examples: {
-        Foo: require("./examples/Foo"),
-        FooMetaModel: require("./examples/FooMetaModel")
+    tests: {
+        Foo: require("./test/helpers/Foo"),
+        FooMetaModel: require("./test/helpers/FooMetaModel"),
+        ExtendedFooMetaModel: require("./test/helpers/ExtendedFooMetaModel"),
+        EntityManagerTest: require("./test/helpers/EntityManagerTest"),
+        PureMetaModel:  require("./test/helpers/PureMetaModel")
     }
 };

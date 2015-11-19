@@ -1,22 +1,19 @@
 "use strict";
-let assert = require("assert");
-let async = require("async");
-let uuid = require('uuid');
-let m = require("..");
-let Foo = require("../examples/Foo");
-let FooMetaModel = require("../examples/FooMetaModel");
+
 describe("cassandra-jpa::EntityManager", function ()
 {
-    let entity = new Foo({
+    const assert = require("assert");
+    const m = require("..");
+    let entity = new m.tests.Foo({
         name: "test",
         created: new Date(),
         entity: new m.Entity(),
         entities: [new m.Entity(), new m.Entity()]
     });
-    let test = new m.EntityManagerTest({
+    let test = new m.tests.EntityManagerTest({
         jpaConfig: new m.JPAConfiguration(),
-        metaModelClass: FooMetaModel,
-        entityClass: Foo,
+        metaModelClass: m.tests.FooMetaModel,
+        entityClass: m.tests.Foo,
         entity: entity,
         testField: "name",
         testFieldValue: "test",

@@ -1,10 +1,11 @@
 "use strict";
-let assert = require("assert");
-let CassandraClientFactory = require("../lib/CassandraClientFactory");
-let cassandra = require('cassandra-driver');
-let JPAConfiguration = require("../lib/JPAConfiguration");
+
 describe("cassandra-jpa::CassandraClientFactory", function ()
 {
+    const assert = require("assert");
+    const CassandraClientFactory = require("../lib/CassandraClientFactory");
+    const cassandra = require('cassandra-driver');
+    const JPAConfiguration = require("../lib/JPAConfiguration");
     let jpaConfig = new JPAConfiguration();
     let config = jpaConfig.cassandra;
     it("should create a client", function (done)

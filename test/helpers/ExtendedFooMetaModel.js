@@ -1,6 +1,6 @@
 "use strict";
-let FooMetaModel = require("./FooMetaModel");
-let Foo = require("./Foo");
+const FooMetaModel = require("./FooMetaModel");
+const Foo = require("./Foo");
 module.exports = class ExtendedFooMetaModel extends FooMetaModel {
     constructor(jpaConfig)
     { 

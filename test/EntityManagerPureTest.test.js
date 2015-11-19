@@ -1,18 +1,18 @@
 "use strict";
-let assert = require("assert");
-let async = require("async");
-let uuid = require('uuid');
-let m = require("..");
-let PureMetaModel = require("../examples/PureMetaModel");
+
 describe("cassandra-jpa::EntityManagerPure", function ()
 {
+    const assert = require("assert");
+    const async = require("async");
+    const uuid = require('uuid');
+    const m = require("..");
     let entity = {
         id: uuid.v1(),
         name: "test"
     };
-    let test = new m.EntityManagerTest({
+    let test = new m.tests.EntityManagerTest({
         jpaConfig: new m.JPAConfiguration(),
-        metaModelClass: PureMetaModel,
+        metaModelClass: m.tests.PureMetaModel,
         entityClass: null,
         entity: entity,
         testField: "name",

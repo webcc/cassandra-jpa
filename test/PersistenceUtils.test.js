@@ -1,9 +1,10 @@
 "use strict";
-let assert = require("assert");
-let uuid = require('uuid');
-let m = require("..");
+
 describe("cassandra-jpa::PersistenceUtils", function ()
 {
+    const assert = require("assert");
+    const uuid = require('uuid');
+    const m = require("..");
     describe("#toTimeUuid", function ()
     {
         let id;
@@ -77,13 +78,13 @@ describe("cassandra-jpa::PersistenceUtils", function ()
         });
         it("should find instance of Entity Class", function ()
         {
-            let entity = new m.examples.Foo();
-            assert.equal(m.PersistenceUtils.isInstanceOf(entity, m.examples.Foo), true);
+            let entity = new m.tests.Foo();
+            assert.equal(m.PersistenceUtils.isInstanceOf(entity, m.tests.Foo), true);
         });
         it("should find instance of FooFunc", function ()
         {
             let FooFunc = function(){
-                this.test="test";
+                this.test = "test";
             };
             let entity = new FooFunc();
             assert.equal(m.PersistenceUtils.isInstanceOf(entity, FooFunc), true);

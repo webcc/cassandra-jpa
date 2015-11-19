@@ -4,8 +4,8 @@ const async = require("async");
 const debug = require("debug")("cassandra-jpa");
 const assert = require("assert");
 const TimeUuid = require('cassandra-driver').types.TimeUuid;
-const Persistence = require("./Persistence");
-const EntityManager = require("./EntityManager");
+const Persistence = require("./../../lib/Persistence");
+const EntityManager = require("./../../lib/EntityManager");
 
 module.exports = class EntityManagerTest {
     constructor(config)

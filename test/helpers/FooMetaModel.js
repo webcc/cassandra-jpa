@@ -1,7 +1,7 @@
 "use strict";
-let MetaModel = require("../lib/MetaModel");
-let Foo = require("./Foo");
-let Entity = require("../lib/Entity");
+const MetaModel = require("../../lib/MetaModel");
+const Foo = require("./Foo");
+const Entity = require("../../lib/Entity");
 module.exports = class FooMetaModel extends MetaModel {
     constructor(jpaConfig)
     {

@@ -1,11 +1,11 @@
 "use strict";
-let assert = require("assert");
-let cassandra = require('cassandra-driver');
-let m = require("..");
-let uuid = require('uuid');
 
 describe("cassandra-jpa::EntityManagerFactory", function ()
 {
+    const assert = require("assert");
+    const cassandra = require('cassandra-driver');
+    const m = require("..");
+    const uuid = require('uuid');
     it("should initiate EntityManagerFactory", function ()
     {
         let id = uuid.v1();

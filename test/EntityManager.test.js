@@ -1,15 +1,14 @@
 "use strict";
-let assert = require("assert");
-let async = require("async");
-let m = require("..");
-let Foo = require("../examples/Foo");
-let FooMetaModel = require("../examples/FooMetaModel");
+
 describe("cassandra-jpa::EntityManager", function ()
 {
+    const assert = require("assert");
+    const async = require("async");
+    const m = require("..");
     let jpaConfig = new m.JPAConfiguration();
-    let fooMetaModel = new FooMetaModel(jpaConfig);
+    let fooMetaModel = new m.tests.FooMetaModel(jpaConfig);
     let entityManager;
-    let foo = new Foo({
+    let foo = new m.tests.Foo({
         name: "test",
         created: new Date(),
         entity: new m.Entity(),
@@ -24,7 +23,7 @@ describe("cassandra-jpa::EntityManager", function ()
         cb = entityManager.getCriteriaBuilder();
         cq = cb.createQuery();
         assert.equal(entityManager instanceof m.EntityManager, true);
-        assert.equal(entityManager.metaModel instanceof FooMetaModel, true);
+        assert.equal(entityManager.metaModel instanceof m.tests.FooMetaModel, true);
     });
     it("should convert entity toRow", function ()
     {
@@ -32,13 +31,13 @@ describe("cassandra-jpa::EntityManager", function ()
         assert.equal(typeof row.id === "string", true);
         assert.equal(typeof row.entity === "string", true);
         assert.equal(row.entities.length, 2);
-        assert.equal(row.entities[0] instanceof Foo, false);
+        assert.equal(row.entities[0] instanceof m.tests.Foo, false);
     });
     it("should convert row to entity", function ()
     {
         let row = fooMetaModel.toRow(foo);
         let entity = fooMetaModel.fromRow(row);
-        assert.equal(entity instanceof Foo, true);
+        assert.equal(entity instanceof m.tests.Foo, true);
         assert.equal(typeof entity.id === "string", true);
         assert.equal(entity.entity instanceof m.Entity, true);
         assert.equal(entity.entities.length, 2);
@@ -93,7 +92,7 @@ describe("cassandra-jpa::EntityManager", function ()
         entityManager.findOne(function (error, res)
         {
             assert.equal(error, null);
-            assert(res instanceof Foo);
+            assert(res instanceof m.tests.Foo);
             assert(res.id === id);
             assert.equal(res.name, "test");
             return done();
@@ -111,7 +110,7 @@ describe("cassandra-jpa::EntityManager", function ()
             {
                 assert.equal(error, null);
                 newFoo = res;
-                assert(newFoo instanceof Foo);
+                assert(newFoo instanceof m.tests.Foo);
                 assert(newFoo.id === id);
                 assert(newFoo.enabled === true);
                 return callback(error, res);
@@ -135,7 +134,7 @@ describe("cassandra-jpa::EntityManager", function ()
             entityManager.findOne(function (error, res)
             {
                 assert.equal(error, null);
-                assert(res instanceof Foo);
+                assert(res instanceof m.tests.Foo);
                 assert(res.id === id);
                 assert(res.enabled === false);
                 return callback(error, res);
@@ -178,7 +177,7 @@ describe("cassandra-jpa::EntityManager", function ()
             let foos = [];
             for (let i = 0; i < 3; i++)
             {
-                let f = new Foo({
+                let f = new m.tests.Foo({
                     name: "manyFoos"
                 });
                 foos.push(f);
