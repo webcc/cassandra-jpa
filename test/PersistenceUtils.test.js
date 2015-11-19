@@ -63,7 +63,7 @@ describe("cassandra-jpa::PersistenceUtils", function ()
             assert.equal(o.id, newEntity._id);
         });
     });
-    describe("#isImplementationOf", function ()
+    describe("#isInstanceOf", function ()
     {
         it("should find instance of Class", function ()
         {
@@ -73,12 +73,12 @@ describe("cassandra-jpa::PersistenceUtils", function ()
                 }
             }
             let entity = new Foo();
-            assert.equal(m.PersistenceUtils.isImplementationOf(entity, Foo), true);
+            assert.equal(m.PersistenceUtils.isInstanceOf(entity, Foo), true);
         });
         it("should find instance of Entity Class", function ()
         {
             let entity = new m.examples.Foo();
-            assert.equal(m.PersistenceUtils.isImplementationOf(entity, m.examples.Foo), true);
+            assert.equal(m.PersistenceUtils.isInstanceOf(entity, m.examples.Foo), true);
         });
         it("should find instance of Class", function ()
         {
@@ -86,7 +86,7 @@ describe("cassandra-jpa::PersistenceUtils", function ()
                 this.test="test";
             };
             let entity = new FooFunc();
-            assert.equal(m.PersistenceUtils.isImplementationOf(entity, FooFunc), true);
+            assert.equal(m.PersistenceUtils.isInstanceOf(entity, FooFunc), true);
         });
 
     });
