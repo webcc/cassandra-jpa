@@ -56,7 +56,7 @@ Requirements
 
 - toJSON function should return entity property names same with table fields
 
-[See more in the foo example](./examples/Foo.js)
+[See more in the foo example](./test/helpers/Foo.js)
 
 ### Configure your persistence
 
@@ -99,7 +99,7 @@ class FooMetaModel extends MetaModel {
 }
 ```
 
-[See more in the foo example](./examples/FooMetaModel.js)
+[See more in the foo example](./test/helpers/FooMetaModel.js)
 
 ### Building criteriaQuery example
 
@@ -154,7 +154,7 @@ this.fields.set("newField", "text");
 // allow for taking into account when querying
 this.extraParams.set("newField", null);
 ```
-[See more in the action](./examples/ExtendedFooMetaModel.js)
+[See more in the action](./test/helpers/ExtendedFooMetaModel.js)
 
 Then when persisting we add the extra params like this: 
 
