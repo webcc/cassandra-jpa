@@ -9,7 +9,7 @@ module.exports = {
     EntityManagerFactory: require("./lib/EntityManagerFactory"),
     Entity: require("./lib/Entity"),
     CassandraClientFactory: require("./lib/CassandraClientFactory"),
-    err: require("./lib/errors"),
+    err: require("./lib/JPAErrors"),
     EntityManagerTest: require("./lib/EntityManagerTest"),
     examples: {
         Foo: require("./examples/Foo"),
