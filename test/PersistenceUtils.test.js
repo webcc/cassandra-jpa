@@ -80,7 +80,7 @@ describe("cassandra-jpa::PersistenceUtils", function ()
             let entity = new m.examples.Foo();
             assert.equal(m.PersistenceUtils.isInstanceOf(entity, m.examples.Foo), true);
         });
-        it("should find instance of Class", function ()
+        it("should find instance of FooFunc", function ()
         {
             let FooFunc = function(){
                 this.test="test";
