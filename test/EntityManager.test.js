@@ -203,4 +203,37 @@ describe("cassandra-jpa::EntityManager", function ()
             return done();
         });
     });
+    it("should persist All Foo as bunch", function (done)
+    {
+        async.series([function (callback)
+        {
+            let foos = [];
+            for (let i = 0; i < 300; i++)
+            {
+                let f = new m.tests.Foo({
+                    name: "manyBunchFoos"
+                });
+                foos.push(f);
+            }
+            entityManager.persistBunch(foos, function (error, res)
+            {
+                assert.equal(error, null);
+                return callback(error, res);
+            });
+        }, function (callback)
+        {
+            let op = cb.equal("name", "manyBunchFoos");
+            let criteriaQuery = cq.where(cb.and([op]));
+            entityManager.findAll(function (error, res)
+            {
+                assert.equal(error, null);
+                assert.equal(res.length, 300);
+                return callback(error, res);
+            }, criteriaQuery);
+        }], function (err, results)
+        {
+            assert.equal(err, null);
+            return done();
+        });
+    });
 });
