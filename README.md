@@ -71,7 +71,7 @@ Make sure you defined the TTL - default in config or in every MetaModel. Set und
 You can use also ENV vars: 
 
 ```bash
-$ export CASSANDRA_DBHOST=myhost
+$ export CASSANDRA_DBHOST=host1,host2,host3 
 $ export CASSANDRA_KEYSPACE=mykeyspace
 $ export CASSANDRA_TTL=Number of seconds for default TTL
 
