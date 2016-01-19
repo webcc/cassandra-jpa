@@ -1,6 +1,6 @@
 {
   "name": "cassandra-jpa",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Imergo Node.js Javascript Persistence API for Apache Cassandra.",
   "main": "index.js",
   "repository": {
