@@ -17,6 +17,7 @@ $ npm install cassandra-jpa
 
 - ES6 (Node.js > 4.1.0)
 - [CQL 3](https://cassandra.apache.org/doc/cql3/CQL.html)
+- Compatible with Cassandra / Cassandra driver 3
 
 ## Design
 
