@@ -1,7 +1,7 @@
 "use strict";
 
 const async = require("async");
-const debug = require("debug")("cassandra-jpa");
+const debug = require("util").debuglog("cassandra-jpa");
 const assert = require("assert");
 const TimeUuid = require('cassandra-driver').types.TimeUuid;
 const Persistence = require("./../../lib/Persistence");

@@ -1,11 +1,16 @@
-# Javascript (Node.js) Persistence API (JPA) for Apache Cassandra
+Javascript (Node.js) Persistence API (JPA) for Apache Cassandra
+===============================================================
 
-A persistence layer for using Cassandra with Node.js based on the latest [DataStax Cassandra Driver](https://blog.risingstack.com/node-js-best-practices/ ). 
+[![NPM Version][npm-image]][npm-url]
+![Node][node-version]
+
+A persistence layer for using [Apache Cassandra](cassandra) with
+Node.js based on the latest
+[DataStax Cassandra Driver](cassandra-driver).
+
 This module brings features from the Java World (JPA) and try to make life with Cassandra easier, mostly for people coming from the JAVA World.
-The idea is to make the API as similar as possible to the [latest JPA](http://download.oracle.com/otndocs/jcp/persistence-2_1-fr-eval-spec/index.html) so that Java - and not only - developers to start easily with cassandra. Last but not least, this modules provides a good base for any Node.js developer for any kind of project that uses cassandra as its reposistory.
 
-![ES6](https://img.shields.io/badge/es-6-brightgreen.svg)
-[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
+The idea is to make the API as similar as possible to the [latest JPA](http://download.oracle.com/otndocs/jcp/persistence-2_1-fr-eval-spec/index.html) so that Java - and not only - developers to start easily with cassandra. Last but not least, this modules provides a good base for any Node.js developer for any kind of project that uses cassandra as its reposistory.
 
 ## Installation
 
@@ -132,7 +137,7 @@ This need to be done if the DefaultRowInterceptor does not cover your needs. Alt
 toRow(entity)
 {
  // my specifics
- let row super.toRow(entity);
+ let row = super.toRow(entity);
   // my specifics
  return row;
 }
@@ -237,3 +242,9 @@ The `DefaultRowInterceptor` can be extended and overriden.
 ## Licence
 
 See [license file](./LICENSE.md).
+
+[cassandra]: https://cassandra.apache.org/
+[cassandra-driver]: http://docs.datastax.com/en/drivers/nodejs/3.0/
+[node-version]: https://img.shields.io/badge/node-4.0.0-orange.svg?style=flat-square
+[npm-image]: https://img.shields.io/badge/npm-3.0.3-blue.svg?style=flat-square
+[npm-url]: https://www.npmjs.com/package/cassandra-jpa
