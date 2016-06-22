@@ -246,5 +246,5 @@ See [license file](./LICENSE.md).
 [cassandra]: https://cassandra.apache.org/
 [cassandra-driver]: http://docs.datastax.com/en/drivers/nodejs/3.0/
 [node-version]: https://img.shields.io/badge/node-4.0.0-orange.svg?style=flat-square
-[npm-image]: https://img.shields.io/badge/npm-3.0.3-blue.svg?style=flat-square
+[npm-image]: https://img.shields.io/badge/npm-3.0.4-blue.svg?style=flat-square
 [npm-url]: https://www.npmjs.com/package/cassandra-jpa
