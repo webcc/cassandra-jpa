@@ -23,7 +23,7 @@
     ],
     "dependencies": {
         "async": "2.0.0-rc.6",
-        "cassandra-driver": "3.0.2",
+        "cassandra-driver": "3.5.0",
         "deep-assign": "2.0.0",
         "string": "3.3.1",
         "typly": "0.3.0",
