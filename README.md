@@ -4,9 +4,9 @@ Javascript (Node.js) Persistence API (JPA) for Apache Cassandra
 [![NPM Version][npm-image]][npm-url]
 ![Node][node-version]
 
-A persistence layer for using [Apache Cassandra](cassandra) with
+A persistence layer for using [Apache Cassandra](https://github.com/apache/cassandra) with
 Node.js based on the latest
-[DataStax Cassandra Driver](cassandra-driver).
+[DataStax Cassandra Driver](https://github.com/datastax/java-driver).
 
 This module brings features from the Java World (JPA) and try to make life with Cassandra easier, mostly for people coming from the JAVA World.
 
@@ -21,7 +21,7 @@ $ npm install cassandra-jpa
 ## Prerequistics
 
 - ES6 (Node.js > 4.1.0)
-- [CQL 3](https://cassandra.apache.org/doc/cql3/CQL.html)
+- [CQL 3](https://cassandra.apache.org/doc/cql3/CQL-3.0.html)
 - Compatible with Cassandra / Cassandra driver 3
 
 ## Design
